@@ -1,0 +1,573 @@
+body {
+  display: flex;
+  justify-content: flex-end;
+  --principal-color: #e3350d;
+}
+img {
+  user-select: none;
+}
+h2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: white;
+  background: var(--principal-color);
+  width: 100%;
+}
+p,
+b,
+span,
+li {
+  font-weight: 600;
+}
+section#infos #respawn ul::-webkit-scrollbar,
+section#infos #drops ul::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: rgba(227, 53, 13, 0.2);
+  padding: 0 2px;
+}
+section#infos #respawn ul::-webkit-scrollbar-thumb,
+section#infos #drops ul::-webkit-scrollbar-thumb {
+  background: rgb(227, 53, 13);
+  width: 5px;
+  border-radius: 5px;
+}
+article#moveset {
+  position: fixed;
+  left: 0;
+  width: 120px;
+  height: 95vh;
+  margin: 2.5vh 0;
+  background: var(--principal-color);
+  border-radius: 0 25px 25px 0;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+article#moveset.closed {
+  width: 50px;
+}
+article#moveset.closed ~ section#infos {
+  width: calc(100% - 70px);
+}
+article#moveset.closed p {
+  left: calc(50% - 55px);
+}
+article#moveset.closed div {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+}
+article#moveset p {
+  position: absolute;
+  font-size: 30px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  rotate: 90deg;
+  left: calc(50% - 20px);
+  text-align: center;
+  height: 95vh;
+  padding: 50px;
+  transition: 0.3s ease;
+  color: white;
+  transform: translateY(50%);
+}
+article#moveset ul {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: flex-start;
+  row-gap: 10px;
+  padding: 7px 0;
+  top: 5px;
+  left: 0;
+  height: calc(100% - 10px);
+  width: 70px;
+  border-radius: 0 15px 15px 0;
+  transition: 0.3s ease;
+  background-color: white;
+  cursor: context-menu;
+}
+article#moveset ul li {
+  display: flex;
+  position: relative;
+  width: 41px;
+  height: 41px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+article#moveset ul li img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transition: 0.2s ease-in;
+}
+article#moveset ul li img:hover {
+  scale: 1.1;
+}
+article#moveset ul li span {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(0, -50%);
+  font-size: 16px;
+  background: green;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 5px;
+  transition: 0.5s ease;
+  visibility: hidden;
+  white-space: nowrap;
+  opacity: 0;
+  z-index: 1000;
+}
+article#moveset ul li:hover span {
+  visibility: visible;
+  opacity: 1;
+  transform: translate(20%, -50%);
+}
+article#moveset ul li span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -18px;
+  transform: translateY(-50%);
+  border: 10px solid transparent;
+  border-right: 10px solid green;
+}
+article#move {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.7);
+  cursor: context-menu;
+}
+article#move.closed {
+  display: none;
+}
+article#move b {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+}
+article#move #moveInfo {
+  display: grid;
+  grid-template-rows: 15% 65% 20%;
+  grid-template-columns: 35% 65%;
+  grid-template-areas:
+    "name cat-type"
+    "list description"
+    "list effect";
+  place-items: center;
+  gap: 5px;
+  width: 500px;
+  height: 250px;
+  border-radius: 15px;
+  padding: 15px;
+  background: white;
+  overflow: hidden;
+  border: 2px solid var(--fire);
+}
+article#move #moveInfo ul {
+  grid-area: list;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  height: calc(100% - 30px);
+  width: 100%;
+  padding: 0 10px;
+}
+article#move #moveInfo ul li {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+}
+article#move #moveInfo ul li span {
+  width: 60%;
+  text-align: right;
+}
+article#move #moveInfo ul li span:nth-child(2) {
+  width: 30%;
+  text-align: left;
+  color: var(--fire);
+}
+article#move #moveInfo #moveName {
+  grid-area: name;
+  display: block;
+  text-align: center;
+  line-height: 49px;
+  font-size: 20px;
+  color: var(--fire);
+  cursor: context-menu;
+}
+article#move #moveInfo #catType {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 10px;
+  width: 100%;
+  height: 80%;
+}
+article#move #moveInfo .cat-type img {
+  height: 100%;
+  border-radius: 5px;
+}
+article#move #moveInfo #catType span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 15px;
+  border-radius: 5px;
+  font-size: 18px;
+  background: var(--fire);
+  color: white;
+  cursor: context-menu;
+}
+article#move #moveInfo #description {
+  width: 100%;
+  height: calc(100% - 40px);
+  font-size: 12px;
+}
+article#move #moveInfo #effects {
+  color: var(--fire);
+  font-size: 12px;
+}
+section#infos {
+  display: flex;
+  flex-flow: column;
+  row-gap: 10px;
+  width: calc(100% - 140px);
+  background: white;
+  min-height: 90vh;
+  margin: 2.5vh 0;
+  border-radius: 15px 0 0 15px;
+  border: 3px solid var(--principal-color);
+  border-right: none;
+  transition: 0.3s ease;
+}
+section#infos #top {
+  display: flex;
+  align-items: center;
+  padding: 10px 40px;
+  width: 100%;
+  background: var(--principal-color);
+}
+section#infos #top #name {
+  text-align: center;
+  font-size: 24px;
+  color: white;
+  letter-spacing: 1px;
+  width: 33%;
+}
+section#infos #top #preview,
+section#infos #top #next {
+  width: 33%;
+}
+section#infos #top #preview p,
+section#infos #top #next p {
+  text-align: center;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+section#infos #top #preview p:hover,
+section#infos #top #next p:hover {
+  color: rgb(221, 221, 221);
+}
+section#infos #general {
+  position: relative;
+  padding-top: 40px;
+}
+section#infos #general .pseudo-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--principal-color);
+}
+section#infos #general .pseudo-list ul {
+  width: 100%;
+  max-width: 380px;
+  height: 80px;
+}
+section#infos #general .pseudo-list ul li {
+  width: 100%;
+  height: 60px;
+}
+section#infos #general .pseudo-list ul li span {
+  display: flex;
+  justify-content: space-around;
+}
+section#infos #general .pseudo-list ul li .types p {
+  width: 40%;
+  color: white;
+  border-radius: 5px;
+}
+section#infos #general .pseudo-list img {
+  width: 150px;
+  height: 150px;
+  border-radius: 15px;
+  background: var(--fire);
+}
+section#infos #general ul {
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+section#infos #general ul li {
+  text-align: center;
+  width: calc(20% - 10px);
+  padding: 0 5px;
+  font-size: 14px;
+  background: var(--principal-color);
+  color: white;
+  border: 3px solid var(--principal-color);
+  border-radius: 5px;
+}
+section#infos #general ul li span {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  color: black;
+  background: white;
+}
+section#infos #weakness {
+  width: 100%;
+}
+section#infos #weakness ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  width: 100%;
+  padding: 0 10px;
+}
+section#infos #weakness ul li {
+  display: flex;
+  flex-flow: column;
+  min-width: 90px;
+  width: calc(100% / 9 - 5px);
+  height: 60px;
+  background: var(--principal-color);
+  border-radius: 10px;
+  padding: 0 5px;
+  overflow: hidden;
+}
+section#infos #weakness ul li span {
+  text-align: center;
+  font-size: 16px;
+  background: white;
+  border-radius: 10px;
+}
+section#infos #weakness ul li span:nth-child(1) {
+  color: white;
+  background: none;
+}
+section#infos #alternative,
+section#infos #evolutionary {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  width: 100%;
+  border-bottom: 2px solid var(--principal-color);
+  padding: 40px 10px 10px;
+}
+section#infos #alternative img,
+section#infos #evolutionary img {
+  background: linear-gradient(to right, var(--grass) 50%, var(--poison) 50%);
+  border-radius: 10px;
+}
+section#infos #evolutionary img {
+  cursor: pointer;
+}
+section#infos #stats {
+  position: relative;
+  width: 100%;
+  border-bottom: 2px solid var(--principal-color);
+}
+section#infos #stats ul {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  row-gap: 5px;
+  padding: 10px;
+  flex-flow: column;
+}
+section#infos #stats ul li {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 30px;
+}
+section#infos #stats ul li span {
+  text-align: center;
+  min-width: 100px;
+  width: 10%;
+  font-size: 20px;
+}
+section#infos #stats ul li span.stats-name {
+  text-align: right;
+}
+section#infos #stats ul li .bar-out {
+  width: 100%;
+  height: 70%;
+  background: rgba(131, 250, 131, 0.5);
+  border-radius: 10px;
+  overflow: hidden;
+}
+section#infos #stats ul li .bar-out .bar-in {
+  width: 80%;
+  height: 100%;
+  background: green;
+  border-radius: 10px;
+}
+section#infos #drops {
+  position: relative;
+  padding-top: 40px;
+  width: 100%;
+}
+section#infos #drops ul {
+  display: flex;
+  padding: 10px;
+  column-gap: 10px;
+  overflow-x: auto;
+}
+section#infos #drops ul li {
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+  background: rgb(161, 161, 161);
+  transition: 0.5s ease;
+}
+section#infos #drops ul li:hover {
+  background: var(--principal-color);
+}
+section#infos #drops ul li a {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+section#infos #drops ul li a img {
+  display: block;
+  position: relative;
+  height: 100%;
+}
+section#infos #drops ul li a span {
+  position: absolute;
+  top: 15px;
+  left: calc(100% + 10px);
+  transform: translate(-25%, -50%);
+  padding: 0 5px;
+  background: green;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  z-index: 10;
+  transition: 0.5s ease;
+  visibility: hidden;
+  opacity: 0;
+  white-space: nowrap;
+}
+section#infos #drops ul li a span::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 7.5px solid transparent;
+  border-right: 7.5px solid green;
+}
+section#infos #drops ul li a:hover span {
+  transform: translate(0, -50%);
+  visibility: visible;
+  opacity: 1;
+}
+section#infos #respawn {
+  display: flex;
+  position: relative;
+  padding-top: 40px;
+}
+section#infos #respawn ul {
+  width: 40%;
+  max-height: 400px;
+  padding-bottom: 10px;
+  border-right: 1px solid black;
+  overflow-y: auto;
+}
+section#infos #respawn ul li {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  font-size: 20px;
+  padding: 10px 0;
+  text-align: center;
+  color: black;
+  background: rgb(216, 216, 216);
+  transition: 0.2s ease;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+section#infos #respawn ul li:nth-child(2n) {
+  background: white;
+}
+section#infos #respawn ul li:hover,
+section#infos #respawn ul li.selected {
+  background: var(--principal-color);
+  color: white;
+  border-bottom: 1px solid transparent;
+}
+section#infos #respawn article {
+  padding-top: 40px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  row-gap: 20px;
+  width: 60%;
+  height: 400px;
+}
+section#infos #respawn article ul {
+  width: 98%;
+  border: none;
+  border-radius: 15px;
+  padding: 0;
+  margin-bottom: 10px;
+}
+section#infos #respawn article ul li:nth-child(1n) {
+  border-color: white;
+  cursor: context-menu;
+  background: var(--principal-color);
+}
+section#infos #respawn article ul li div,
+section#infos #respawn article ul li span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+section#infos #respawn article ul li img {
+  width: 70px;
+  height: 70px;
+}

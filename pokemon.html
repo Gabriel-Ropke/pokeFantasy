@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/pokemon.css" />
+    <script defer src="js/database.js"></script>
+    <script defer src="js/pokemongenerate.js" type="module"></script>
+    <script defer src="js/pokemonlistener.js"></script>
+    <title>Pokémon</title>
+  </head>
+  <body>
+    <article id="move" class="closed">
+      <b>x</b>
+      <div id="moveInfo">
+        <span id="moveName"></span>
+        <ul></ul>
+        <div id="catType"></div>
+        <p id="description"></p>
+        <p id="effects"></p>
+      </div>
+    </article>
+    <article id="moveset">
+      <p>moveset</p>
+      <ul></ul>
+    </article>
+    <section id="infos">
+      <div id="top">
+        <div id="preview">
+          <a href="pokemon.html"><p></p></a>
+        </div>
+        <h1 id="name">Charmander</h1>
+        <div id="next">
+          <a href="pokemon.html"><p></p></a>
+        </div>
+      </div>
+      <div id="general">
+        <h2>Informações Gerais</h2>
+        <div class="pseudo-list">
+          <img src="img/charmander.png" alt="" />
+          <ul>
+            <li>Species <span class="species"></span></li>
+            <li>Types <span class="types"> </span></li>
+          </ul>
+        </div>
+        <ul>
+          <li>Abilities <br /><span class="abilities"></span></li>
+          <li>Catch Rate <br /><span class="catch-rate"></span></li>
+          <li>width <br /><span class="width"></span></li>
+          <li>height <br /><span class="height"></span></li>
+          <li>EV Yield <br /><span class="ev-yield"></span></li>
+        </ul>
+      </div>
+      <div id="weakness">
+        <ul></ul>
+      </div>
+      <div id="alternative">
+        <h2>Formas Alternativas</h2>
+        <img class="normal" src="" alt="" />
+        <img class="shiny" src="" alt="" />
+      </div>
+      <div id="evolutionary">
+        <h2>Linha Evolutiva</h2>
+      </div>
+      <div id="stats">
+        <h2>Status Base</h2>
+        <ul></ul>
+      </div>
+      <div id="drops">
+        <h2>Drops</h2>
+        <ul></ul>
+      </div>
+      <div id="respawn">
+        <h2>Respawns</h2>
+        <ul class="respawn-list"></ul>
+        <article>
+          <h2 class="title"></h2>
+          <ul></ul>
+        </article>
+      </div>
+    </section>
+  </body>
+</html>

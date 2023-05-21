@@ -1,0 +1,138 @@
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+@keyframes cardHover {
+  0% {
+    bottom: 0px;
+  }
+  50% {
+    bottom: 4px;
+  }
+  100% {
+    bottom: 0px;
+  }
+}
+@keyframes rotate {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 359deg;
+  }
+}
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+section#pokedex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 10px;
+  width: 90%;
+  min-height: 100vh;
+  margin: 140px auto 40px;
+  background-color: white;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2);
+  padding: 20px 15px 30px;
+  border-radius: 25px;
+}
+/* PokeCard */
+section#pokedex .poke-card {
+  position: relative;
+  width: calc(100% / 5 - 10px);
+  height: 200px;
+  border-radius: 8px 0 8px 8px;
+  transition: 0.5s cubic-bezier(0, 0.69, 0.58, 1);
+  background: var(--grass);
+  color: white;
+}
+section#pokedex .poke-card a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+section#pokedex .poke-card:hover {
+  cursor: pointer;
+  animation: cardHover 0.5s;
+  z-index: 10;
+}
+section#pokedex .poke-card .top {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 26px;
+  color: white;
+  line-height: 26px;
+  font-size: 16px;
+  font-weight: 500;
+}
+section#pokedex .poke-card .image img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+}
+section#pokedex .poke-card .image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+}
+section#pokedex .poke-card .image::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  top: 0;
+  width: 140px;
+  height: 140px;
+  background: url(../img/pokeball.png);
+  background-size: cover;
+  animation: rotate 4s linear infinite;
+}
+section#pokedex .poke-card .types {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  bottom: 2px;
+  left: 1%;
+  width: 98%;
+  padding: 8px 0;
+  background: white;
+  border-radius: 5px;
+  z-index: 1;
+}
+section#pokedex .poke-card .types .type {
+  text-transform: capitalize;
+  background: var(--grass);
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px 0;
+  width: 45%;
+  color: white;
+  font-weight: 600;
+}
