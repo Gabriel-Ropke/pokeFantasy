@@ -1,0 +1,178 @@
+@media (max-width: 1030px) {
+  section#infos #weakness ul li {
+    width: calc(100% / 8 - 5px);
+  }
+}
+@media (max-width: 1000px) {
+  section#infos #general ul li .types {
+    flex-flow: column;
+    row-gap: 5px;
+  }
+  section#infos #general ul li .types p {
+    width: 100%;
+  }
+}
+@media (max-width: 935px) {
+  section#infos #weakness ul li {
+    width: calc(100% / 7 - 5px);
+  }
+}
+@media (max-width: 840px) {
+  section#infos #weakness ul li {
+    width: calc(100% / 6 - 5px);
+  }
+}
+@media (max-width: 744px) {
+  section#infos #weakness ul li {
+    width: calc(100% / 5 - 5px);
+  }
+}
+@media (max-width: 730px) {
+  section#infos #top #preview,
+  section#infos #top #next {
+    display: none;
+  }
+  section#infos #top #name {
+    width: 100%;
+  }
+  section#infos #general .pseudo-list {
+    flex-flow: column;
+  }
+  section#infos #general .pseudo-list ul {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    flex-flow: column;
+    row-gap: 10px;
+  }
+  section#infos #general .pseudo-list ul li span {
+    flex-flow: row;
+    flex-wrap: wrap;
+  }
+  section#infos #stats ul li {
+    width: 90%;
+  }
+  section#infos #respawn ul {
+    width: 100%;
+    border-right: none;
+  }
+  section#infos #respawn article {
+    display: none;
+  }
+}
+@media (max-width: 720px) {
+  section#infos #general ul li {
+    width: calc(100% / 4 - 10px);
+  }
+}
+@media (max-width: 650px) {
+  section#infos #weakness ul li {
+    width: calc(100% / 4 - 5px);
+  }
+  section#infos #stats ul li {
+    width: 95%;
+  }
+}
+@media (max-width: 610px) {
+  section#infos #general ul li {
+    width: calc(100% / 3 - 10px);
+  }
+}
+@media (max-width: 555px) {
+  section#infos #weakness ul li {
+    width: calc(100% / 3 - 5px);
+  }
+  section#infos #stats ul li .bar-out {
+    display: none;
+  }
+  section#infos #stats ul li span {
+    width: 30%;
+  }
+  section#infos #evolutionary img {
+    width: 100px;
+    height: 100px;
+  }
+}
+@media (max-width: 500px) {
+  section#infos #general ul li {
+    width: calc(100% / 2 - 10px);
+  }
+  section#infos #general ul .abilities {
+    width: 100%;
+  }
+  section#infos #evolutionary img {
+    width: 90px;
+    height: 90px;
+  }
+}
+@media (max-width: 460px) {
+  section#infos #weakness ul li {
+    width: calc(100% / 2 - 5px);
+  }
+  section#infos #evolutionary {
+    flex-flow: column;
+  }
+  section#infos #evolutionary img {
+    width: 150px;
+    height: 150px;
+  }
+}
+@media (max-width: 430px) {
+  section#infos #alternative img {
+    width: 100px;
+  }
+  h2 {
+    font-size: 20px;
+  }
+}
+@media (max-width: 390px) {
+  section#infos #general ul li {
+    width: calc(100% / 1 - 10px);
+  }
+}
+@media (max-width: 380px) {
+  section#infos #alternative {
+    flex-flow: column;
+    row-gap: 10px;
+    padding-top: 70px;
+  }
+  section#infos #alternative img {
+    width: 150px;
+  }
+}
+@media (max-width: 371px) {
+  section#infos #weakness ul li {
+    width: calc(100% / 1 - 5px);
+  }
+  section#infos #general {
+    padding-top: 60px;
+  }
+}
+@media (max-width: 255px) {
+  section#infos #evolutionary {
+    padding-top: 70px;
+  }
+}
+@media (max-width: 320px) {
+  article#moveset {
+    width: 90%;
+  }
+  article#moveset p {
+    left: calc(80% - 30px);
+  }
+  article#moveset ul li {
+    width: 50%;
+  }
+  article#moveset ul li span {
+    display: none;
+  }
+  article#moveset ul {
+    width: calc(100% - 50px);
+    flex-wrap: wrap;
+  }
+  section#infos.closed {
+    visibility: hidden;
+    width: 0;
+  }
+}

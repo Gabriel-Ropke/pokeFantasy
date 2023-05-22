@@ -7,14 +7,14 @@ import {
   allStats,
   allWeakness,
 } from "./database.js";
-
+let ez = 0;
 const selectedPokemon = allPokemon.find(
   (e) => Math.floor(e.numberDex) == localStorage.getItem("selectedPokemon")
 );
-console.log(selectedPokemon.moves.length);
+const type = selectedPokemon.types[0];
 const moveset = document.querySelector("#moveset ul");
-for (let i = 0; i < selectedPokemon.moves.length; i++) {
-  let searchMove = allMoves.find((e) => e.name == selectedPokemon.moves[i]);
+selectedPokemon.moves.forEach((e) => {
+  let searchMove = allMoves.find((sear) => sear.name == e);
   let newMove = document.createElement("li");
   let newMoveName = document.createElement("span");
   let newMoveImg = document.createElement("img");
@@ -25,7 +25,7 @@ for (let i = 0; i < selectedPokemon.moves.length; i++) {
   newMoveName.style.background = `var(--${searchMove.type})`;
   newMoveName.innerText = searchMove.name;
   newMoveImg.src = searchMove.moveSource;
-}
+});
 const moves = document.querySelectorAll("#moveset ul li");
 const moveInfo = document.getElementById("moveInfo");
 const moveInfoName = document.getElementById("moveName");
@@ -61,10 +61,8 @@ moves.forEach((e) => {
       newMoveAttributeNumber.innerText = searchMoveInfo.attributes[i];
       newMoveAttributeNumber.style.color = `var(--${searchMoveInfo.type})`;
     }
-    console.log(searchMoveInfo);
   });
 });
-const type = selectedPokemon.types[0];
 document.body.style.setProperty("--principal-color", `var(--${type})`);
 const principalTitle = document.querySelector("#top h1");
 const previewPokemon = document.querySelector("#preview a p");
@@ -97,36 +95,52 @@ const weakness = document.querySelector("#weakness ul");
 firstImg.src = selectedPokemon.sprite;
 firstImg.style.background = `var(--${type})`;
 species.innerText = selectedPokemon.species;
-for (let i = 0; i < selectedPokemon.types.length; i++) {
+selectedPokemon.types.forEach((e) => {
   let newType = document.createElement("p");
-  newType.innerText = selectedPokemon.types[i];
-  newType.style.background = `var(--${selectedPokemon.types[i]})`;
+  newType.innerText = e;
+  newType.style.background = `var(--${e})`;
 
   types.appendChild(newType);
-}
-abilities.innerText = selectedPokemon.abilities;
+});
+selectedPokemon.abilities.forEach((e) => {
+  let newAbility = document.createElement("a");
+  abilities.appendChild(newAbility);
+  newAbility.innerText = e;
+  newAbility.href = "#";
+});
+selectedPokemon.evYield.forEach((e) => {
+  let newEV = document.createElement("p");
+  evYield.appendChild(newEV);
+  newEV.innerText = e;
+});
+
 catchRate.innerText = selectedPokemon.catchRate;
 pokeWidth.innerText = selectedPokemon.width;
 pokeHeight.innerText = selectedPokemon.height;
-evYield.innerText = selectedPokemon.evYield;
-for (let i = 0; i < allWeakness.length; i++) {
+allWeakness.forEach((e) => {
   let newWeak = document.createElement("li");
   let newWeakTitle = document.createElement("span");
   let newWeakness = document.createElement("span");
   weakness.appendChild(newWeak);
   newWeak.appendChild(newWeakTitle);
   newWeak.appendChild(newWeakness);
-  newWeak.style.background = `var(--${allWeakness[i].name})`;
-  newWeakTitle.innerText = allWeakness[i].name;
-  const weak = allWeakness.find((e) => e.name == selectedPokemon.types[0]);
+  newWeak.style.background = `var(--${e.name})`;
+  newWeakTitle.innerText = e.name;
+  const weak = allWeakness.find(
+    (sear) => sear.name == selectedPokemon.types[0]
+  );
   if (selectedPokemon.types.length > 1) {
-    const weak2 = allWeakness.find((e) => e.name == selectedPokemon.types[1]);
-    let newType = weak.Weakness[i] * weak2.Weakness[i];
+    const weak2 = allWeakness.find(
+      (sear) => sear.name == selectedPokemon.types[1]
+    );
+    let newType = weak.Weakness[ez] * weak2.Weakness[ez];
     newWeakness.innerText = `${newType}x`;
   } else {
-    newWeakness.innerText = `${weak.Weakness[i]}x`;
+    newWeakness.innerText = `${weak.Weakness[ez]}x`;
   }
-}
+  ez++;
+});
+ez = 0;
 
 /* Alternative Forms & Evolutionary */
 const normalForm = document.querySelector("#alternative .normal");
@@ -138,10 +152,8 @@ normalForm.style.background = `var(--${type})`;
 shinyForm.style.background = `var(--${type})`;
 
 const evolutionary = document.getElementById("evolutionary");
-for (let i = 0; i < selectedPokemon.evolutionary.length; i++) {
-  const evolution = allPokemon.find(
-    (e) => e.name == selectedPokemon.evolutionary[i]
-  );
+selectedPokemon.evolutionary.forEach((e) => {
+  const evolution = allPokemon.find((sear) => sear.name == e);
   let newEvoHref = document.createElement("a");
   let newEvo = document.createElement("img");
   newEvoHref.appendChild(newEvo);
@@ -150,11 +162,12 @@ for (let i = 0; i < selectedPokemon.evolutionary.length; i++) {
   newEvo.id = evolution.numberDex;
   newEvo.style.background = `var(--${type})`;
   evolutionary.appendChild(newEvoHref);
-}
+});
+
 /* Stats */
 const stats = document.querySelector("#stats ul");
 
-for (let i = 0; i < selectedPokemon.stats.length; i++) {
+selectedPokemon.stats.forEach((e) => {
   let newStat = document.createElement("li");
   let newStatName = document.createElement("span");
   let newStatNumber = document.createElement("span");
@@ -168,32 +181,37 @@ for (let i = 0; i < selectedPokemon.stats.length; i++) {
   newStatName.classList.add("stats-name");
   newBarOut.classList.add("bar-out");
   newBarIn.classList.add("bar-in");
-  newStatName.innerText = allStats[i];
-  newStatNumber.innerText = selectedPokemon.stats[i];
-  newBarIn.style.width = `${selectedPokemon.stats[i] / 1.5}%`;
+  newStatName.innerText = allStats[ez];
+  newStatNumber.innerText = e;
+  newStatNumber.style.color = `var(--${type})`;
+  newBarIn.style.width = `${e / 1.5}%`;
   newBarIn.style.background = `var(--${type})`;
-}
+  ez++;
+});
+ez = 0;
 
 /* Drops */
-const drops = document.querySelector("#drops ul");
-for (let i = 0; i < selectedPokemon.drops.length; i++) {
-  const searchDrops = allDrops.find((e) => e.name == selectedPokemon.drops[i]);
+const dropList = document.querySelector("#drops ul");
+
+selectedPokemon.drops.forEach((e) => {
+  const searchDrops = allDrops.find((sear) => sear.name == e);
   let newDrop = document.createElement("li");
   let newDropHref = document.createElement("a");
   let newDropImg = document.createElement("img");
   let newDropName = document.createElement("span");
-  drops.appendChild(newDrop);
+  dropList.appendChild(newDrop);
   newDrop.appendChild(newDropHref);
   newDropHref.appendChild(newDropImg);
   newDropHref.appendChild(newDropName);
   newDrop.style.background = `var(--${searchDrops.Rarity})`;
   newDropName.innerText = searchDrops.name;
-  newDropHref.href = "index.html";
+  newDropName.style.background = `var(--${type})`;
+  newDropHref.href = "#";
   newDropImg.src = searchDrops.sprite;
-}
+});
 /* Resps */
 const resps = document.querySelector(".respawn-list");
-for (let i = 0; i < selectedPokemon.routes.length; i++) {
+selectedPokemon.routes.forEach((e) => {
   let newResp = document.createElement("li");
   let newRespName = document.createElement("span");
   let newRespLevel = document.createElement("span");
@@ -201,37 +219,39 @@ for (let i = 0; i < selectedPokemon.routes.length; i++) {
   newResp.appendChild(newRespName);
   newResp.appendChild(newRespLevel);
   newRespName.classList.add("name");
-  newRespName.innerText = selectedPokemon.routes[i].name;
-  newRespLevel.innerText = `Nvl ${selectedPokemon.routes[i].level}`;
-}
+  newRespName.innerText = e.name;
+  newRespLevel.innerText = `Nvl ${e.level}`;
+});
 /* Selected Resp Info */
 const respawnTitle = document.querySelector("#respawn article .title");
 const respawn = document.querySelectorAll(".respawn-list li");
 const selectedRespawnList = document.querySelector("#respawn article ul");
 respawn.forEach((e) => {
-  e.addEventListener("click", () => {
-    selectedRespawnList.innerHTML = "";
-    respawnTitle.innerText = e.firstChild.innerText;
-    const selectedRespawn = allResps.find(
-      (e) => e.name == respawnTitle.innerText
-    );
-    for (let i = 0; i < selectedRespawn.appears.length; i++) {
-      let newResp = document.createElement("li");
-      let newRespAppear = document.createElement("div");
-      let newAppearName = document.createElement("span");
-      let newAppearSprite = document.createElement("img");
-      let newAppearLevel = document.createElement("span");
-      selectedRespawnList.appendChild(newResp);
-      newResp.appendChild(newRespAppear);
-      newRespAppear.appendChild(newAppearSprite);
-      newRespAppear.appendChild(newAppearName);
-      newResp.appendChild(newAppearLevel);
-      newAppearName.innerHTML = selectedRespawn.appears[i];
-      newAppearLevel.innerText = selectedRespawn.levels[i];
-      const selectedRespawnSprite = allPokemon.find(
-        (e) => e.name == selectedRespawn.appears[i]
+  if (window.innerWidth >= 730) {
+    e.addEventListener("click", () => {
+      selectedRespawnList.innerHTML = "";
+      respawnTitle.innerText = e.firstChild.innerText;
+      const selectedRespawn = allResps.find(
+        (e) => e.name == respawnTitle.innerText
       );
-      newAppearSprite.src = selectedRespawnSprite.sprite;
-    }
-  });
+      for (let i = 0; i < selectedRespawn.appears.length; i++) {
+        let newResp = document.createElement("li");
+        let newRespAppear = document.createElement("div");
+        let newAppearName = document.createElement("span");
+        let newAppearSprite = document.createElement("img");
+        let newAppearLevel = document.createElement("span");
+        selectedRespawnList.appendChild(newResp);
+        newResp.appendChild(newRespAppear);
+        newRespAppear.appendChild(newAppearSprite);
+        newRespAppear.appendChild(newAppearName);
+        newResp.appendChild(newAppearLevel);
+        newAppearName.innerHTML = selectedRespawn.appears[i];
+        newAppearLevel.innerText = selectedRespawn.levels[i];
+        const selectedRespawnSprite = allPokemon.find(
+          (e) => e.name == selectedRespawn.appears[i]
+        );
+        newAppearSprite.src = selectedRespawnSprite.sprite;
+      }
+    });
+  }
 });
