@@ -21,7 +21,8 @@ for (let i = 0; i < selectedPokemon.moves.length; i++) {
   moveset.appendChild(newMove);
   newMove.appendChild(newMoveImg);
   newMove.appendChild(newMoveName);
-  newMove.style.background = `var(--${searchMove.type})`;
+  newMove.style.borderColor = `var(--${searchMove.type})`;
+  newMoveName.style.background = `var(--${searchMove.type})`;
   newMoveName.innerText = searchMove.name;
   newMoveImg.src = searchMove.moveSource;
 }
@@ -133,6 +134,8 @@ const shinyForm = document.querySelector("#alternative .shiny");
 
 normalForm.src = selectedPokemon.sprite;
 shinyForm.src = selectedPokemon.shinySprite;
+normalForm.style.background = `var(--${type})`;
+shinyForm.style.background = `var(--${type})`;
 
 const evolutionary = document.getElementById("evolutionary");
 for (let i = 0; i < selectedPokemon.evolutionary.length; i++) {
@@ -145,6 +148,7 @@ for (let i = 0; i < selectedPokemon.evolutionary.length; i++) {
   newEvoHref.href = "pokemon.html";
   newEvo.src = evolution.sprite;
   newEvo.id = evolution.numberDex;
+  newEvo.style.background = `var(--${type})`;
   evolutionary.appendChild(newEvoHref);
 }
 /* Stats */
@@ -166,7 +170,7 @@ for (let i = 0; i < selectedPokemon.stats.length; i++) {
   newBarIn.classList.add("bar-in");
   newStatName.innerText = allStats[i];
   newStatNumber.innerText = selectedPokemon.stats[i];
-  newBarIn.style.width = `${selectedPokemon.stats[i] / 2}%`;
+  newBarIn.style.width = `${selectedPokemon.stats[i] / 1.5}%`;
   newBarIn.style.background = `var(--${type})`;
 }
 

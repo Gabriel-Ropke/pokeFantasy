@@ -21,3 +21,17 @@ evolutionListener.forEach((e) => {
     localStorage.setItem("selectedPokemon", e.id);
   });
 });
+const preview = document.querySelector("#preview a p");
+const next = document.querySelector("#next a p");
+preview.addEventListener("click", () => {
+  localStorage.setItem(
+    "selectedPokemon",
+    localStorage.getItem("selectedPokemon") - 1
+  );
+});
+next.addEventListener("click", () => {
+  localStorage.setItem(
+    "selectedPokemon",
+    Math.floor(localStorage.getItem("selectedPokemon")) + 1
+  );
+});

@@ -54,7 +54,7 @@ article#moveset.closed ~ section#infos {
 article#moveset.closed p {
   left: calc(50% - 55px);
 }
-article#moveset.closed div {
+article#moveset.closed ul {
   opacity: 0;
   visibility: hidden;
   width: 0;
@@ -97,6 +97,7 @@ article#moveset ul li {
   width: 41px;
   height: 41px;
   border-radius: 50%;
+  border: 2px solid #fff;
   cursor: pointer;
 }
 article#moveset ul li img {
@@ -129,15 +130,6 @@ article#moveset ul li:hover span {
   visibility: visible;
   opacity: 1;
   transform: translate(20%, -50%);
-}
-article#moveset ul li span::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -18px;
-  transform: translateY(-50%);
-  border: 10px solid transparent;
-  border-right: 10px solid green;
 }
 article#move {
   position: fixed;
@@ -472,6 +464,7 @@ section#infos #drops ul li a img {
   display: block;
   position: relative;
   height: 100%;
+  max-width: 100%;
 }
 section#infos #drops ul li a span {
   position: absolute;
