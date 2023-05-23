@@ -457,7 +457,7 @@ export const allDrops = [
     Value: "3",
     Rarity: "common",
     description: "lorem",
-    sprite: "drops/essence_of_fire.png",
+    sprite: "drops/Essence_of_fire.png",
   },
   {
     name: "fire tail",
