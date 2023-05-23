@@ -21,7 +21,7 @@ selectedPokemon.moves.forEach((e) => {
   moveset.appendChild(newMove);
   newMove.appendChild(newMoveImg);
   newMove.appendChild(newMoveName);
-  newMove.style.borderColor = `var(--${searchMove.type})`;
+  newMoveImg.style.borderColor = `var(--${searchMove.type})`;
   newMoveName.style.background = `var(--${searchMove.type})`;
   newMoveName.innerText = searchMove.name;
   newMoveImg.src = searchMove.moveSource;
@@ -35,7 +35,10 @@ const moveInfoDescription = document.getElementById("description");
 const moveInfoEffects = document.getElementById("effects");
 moves.forEach((e) => {
   e.addEventListener("click", () => {
-    const searchMoveInfo = allMoves.find((elm) => elm.name == e.innerText);
+    const searchMoveInfo = allMoves.find(
+      (elm) => elm.name == e.lastChild.innerHTML
+    );
+    console.log(searchMoveInfo);
     moveInfoList.innerHTML = "";
     moveInfoCatType.innerHTML = "";
     let newCategory = document.createElement("img");
@@ -83,7 +86,7 @@ if (Math.floor(selectedPokemon.numberDex) == 1) {
 }
 principalTitle.innerText = selectedPokemon.name;
 /* General Info */
-const firstImg = document.querySelector(".pseudo-list img");
+const firstImg = document.querySelector("#pseudo-list img");
 const species = document.querySelector(".species");
 const types = document.querySelector(".types");
 const abilities = document.querySelector(".abilities");
@@ -99,7 +102,6 @@ selectedPokemon.types.forEach((e) => {
   let newType = document.createElement("p");
   newType.innerText = e;
   newType.style.background = `var(--${e})`;
-
   types.appendChild(newType);
 });
 selectedPokemon.abilities.forEach((e) => {
@@ -154,12 +156,16 @@ shinyForm.style.background = `var(--${type})`;
 const evolutionary = document.getElementById("evolutionary");
 selectedPokemon.evolutionary.forEach((e) => {
   const evolution = allPokemon.find((sear) => sear.name == e);
+  console.log(evolution);
   let newEvoHref = document.createElement("a");
+  let newEvoLevel = document.createElement("span");
   let newEvo = document.createElement("img");
   newEvoHref.appendChild(newEvo);
+  newEvoHref.appendChild(newEvoLevel);
   newEvoHref.href = "pokemon.html";
   newEvo.src = evolution.sprite;
   newEvo.id = evolution.numberDex;
+  newEvoLevel.innerText = evolution.evoMode;
   newEvo.style.background = `var(--${type})`;
   evolutionary.appendChild(newEvoHref);
 });
@@ -204,7 +210,7 @@ selectedPokemon.drops.forEach((e) => {
   newDropHref.appendChild(newDropImg);
   newDropHref.appendChild(newDropName);
   newDrop.style.background = `var(--${searchDrops.Rarity})`;
-  newDropName.innerText = searchDrops.name;
+  newDropName.innerText = `${searchDrops.name} $${searchDrops.Value}`;
   newDropName.style.background = `var(--${type})`;
   newDropHref.href = "#";
   newDropImg.src = searchDrops.sprite;
@@ -218,6 +224,7 @@ selectedPokemon.routes.forEach((e) => {
   resps.appendChild(newResp);
   newResp.appendChild(newRespName);
   newResp.appendChild(newRespLevel);
+  newResp.classList.add("route");
   newRespName.classList.add("name");
   newRespName.innerText = e.name;
   newRespLevel.innerText = `Nvl ${e.level}`;
@@ -234,23 +241,39 @@ respawn.forEach((e) => {
       const selectedRespawn = allResps.find(
         (e) => e.name == respawnTitle.innerText
       );
+      e.classList.add("selected");
+      respawn.forEach((elm) => {
+        if (elm.innerHTML != e.innerHTML) {
+          elm.classList.remove("selected");
+        }
+      });
       for (let i = 0; i < selectedRespawn.appears.length; i++) {
         let newResp = document.createElement("li");
+        let newRespHref = document.createElement("a");
         let newRespAppear = document.createElement("div");
         let newAppearName = document.createElement("span");
         let newAppearSprite = document.createElement("img");
         let newAppearLevel = document.createElement("span");
         selectedRespawnList.appendChild(newResp);
-        newResp.appendChild(newRespAppear);
+        newResp.appendChild(newRespHref);
+        newRespHref.appendChild(newRespAppear);
         newRespAppear.appendChild(newAppearSprite);
         newRespAppear.appendChild(newAppearName);
-        newResp.appendChild(newAppearLevel);
+        newRespHref.appendChild(newAppearLevel);
         newAppearName.innerHTML = selectedRespawn.appears[i];
+        newRespHref.href = "pokemon.html";
         newAppearLevel.innerText = selectedRespawn.levels[i];
         const selectedRespawnSprite = allPokemon.find(
           (e) => e.name == selectedRespawn.appears[i]
         );
         newAppearSprite.src = selectedRespawnSprite.sprite;
+        newAppearName.addEventListener("click", (e) => {
+          const resp = allPokemon.find(
+            (sear) => sear.name == newAppearName.innerText
+          );
+          console.log(resp);
+          localStorage.setItem("selectedPokemon", resp.numberDex);
+        });
       }
     });
   }

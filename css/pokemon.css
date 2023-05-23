@@ -2,6 +2,7 @@ body {
   display: flex;
   justify-content: flex-end;
   --principal-color: #e3350d;
+  margin-top: 40px;
 }
 img {
   user-select: none;
@@ -22,6 +23,76 @@ span,
 li {
   font-weight: 600;
 }
+nav.closed {
+  top: 10px;
+  left: 40px;
+  width: 50px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+nav.closed input,
+nav.closed a {
+  display: none;
+}
+nav.closed:hover {
+  width: 100px;
+  left: 20px;
+}
+nav.closed::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 5px;
+  background: white;
+  box-shadow: 0 10px 0 0 white, 0 -10px 0 0 white;
+}
+nav {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  padding: 0 15px;
+  background: var(--principal-color);
+  border-radius: 0 0 15px 15px;
+  transition: 0.2s ease;
+  z-index: 50;
+}
+nav a {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  transition: 0.3s ease;
+}
+nav a:hover {
+  color: rgb(206, 206, 206);
+}
+nav input {
+  border-radius: 25px;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  transition: 0.3s ease;
+  width: 30%;
+}
+nav input:focus {
+  padding: 10px;
+  border-radius: 10px;
+  width: 80%;
+}
+nav input:focus ~ a {
+  opacity: 0;
+  visibility: hidden;
+}
 section#infos #respawn ul::-webkit-scrollbar,
 section#infos #drops ul::-webkit-scrollbar {
   width: 10px;
@@ -39,10 +110,10 @@ article#moveset {
   position: fixed;
   left: 0;
   width: 120px;
-  height: 95vh;
-  margin: 2.5vh 0;
+  height: calc(100vh - 70px);
+  margin: 35px 0;
   background: var(--principal-color);
-  border-radius: 0 25px 25px 0;
+  border-radius: 0 25px 0 0;
   transition: 0.3s ease;
   cursor: pointer;
 }
@@ -77,17 +148,17 @@ article#moveset p {
 }
 article#moveset ul {
   position: absolute;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(12, 1fr);
+  justify-items: center;
   row-gap: 10px;
   padding: 7px 0;
   top: 5px;
   left: 0;
   height: calc(100% - 10px);
   width: 70px;
-  border-radius: 0 15px 15px 0;
+  border-radius: 0 15px 0 0;
   transition: 0.3s ease;
   background-color: white;
   cursor: context-menu;
@@ -98,13 +169,13 @@ article#moveset ul li {
   width: 41px;
   height: 41px;
   border-radius: 50%;
-  border: 2px solid #fff;
   cursor: pointer;
 }
 article#moveset ul li img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 41px;
+  height: 41px;
+  border: 2px solid #fff;
   border-radius: 50%;
   transition: 0.2s ease-in;
 }
@@ -207,23 +278,26 @@ article#move #moveInfo #moveName {
   font-size: 20px;
   color: var(--fire);
   cursor: context-menu;
+  white-space: nowrap;
 }
 article#move #moveInfo #catType {
   display: flex;
   justify-content: flex-end;
   column-gap: 10px;
   width: 100%;
-  height: 80%;
+  height: 100%;
 }
-article#move #moveInfo .cat-type img {
+article#move #moveInfo #catType img {
   height: 100%;
   border-radius: 5px;
+  max-height: 27px;
 }
 article#move #moveInfo #catType span {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 15px;
+  padding: 0 15px;
+  line-height: 30px;
   border-radius: 5px;
   font-size: 18px;
   background: var(--fire);
@@ -288,54 +362,85 @@ section#infos #general {
   padding: 10px;
   padding-top: 40px;
 }
-section#infos #general .pseudo-list {
+section#infos #general #pseudo-list {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
   margin: 10px 0;
 }
-section#infos #general .pseudo-list ul {
-  max-width: 380px;
+section#infos #general #pseudo-list ul {
+  max-width: 500px;
+  width: 70%;
+  display: flex;
+  flex-flow: column;
 }
-section#infos #general .pseudo-list ul li {
+section#infos #general #pseudo-list ul li {
   display: flex;
   flex-flow: column;
   width: 100%;
+  padding-bottom: 2px;
 }
-section#infos #general .pseudo-list ul li span {
-  display: flex;
-  flex-flow: column;
+section#infos #general #pseudo-list ul li span {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, auto));
   justify-content: space-around;
 }
-section#infos #general .pseudo-list ul li span a {
+section#infos #general #pseudo-list ul li span a {
+  text-align: center;
   color: black;
+  white-space: nowrap;
+  padding: 0 5px;
 }
-section#infos #general .pseudo-list ul li span a:hover {
+section#infos #general #pseudo-list ul li span a:hover {
   color: rgb(82, 82, 82);
 }
-section#infos #general .pseudo-list img {
+section#infos #general #pseudo-list img {
   width: 150px;
   height: 150px;
   border-radius: 15px;
   background: var(--fire);
 }
 section#infos #general ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(125px, auto));
   gap: 10px;
 }
 section#infos #general ul li {
   text-align: center;
-  width: calc(20% - 10px);
-  min-width: 100px;
+  width: 100%;
   padding: 0 5px;
   font-size: 14px;
   background: var(--principal-color);
   color: white;
   border: 3px solid var(--principal-color);
   border-radius: 5px;
+}
+section#infos #general ul li:nth-child(2) {
+  position: relative;
+  cursor: context-menu;
+}
+section#infos #general ul li .catch-rate::before {
+  content: "rate W/ Ultra Ball";
+  position: absolute;
+  top: -30px;
+  left: 0;
+  transform: translateX(50%);
+  border: 2px solid var(--principal-color);
+  background: white;
+  color: black;
+  font-size: 14px;
+  padding: 2px 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+  transition: 0.5s ease;
+  visibility: hidden;
+  opacity: 0;
+}
+section#infos #general ul li:hover .catch-rate::before {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
 }
 section#infos #general ul li span {
   display: flex;
@@ -356,9 +461,8 @@ section#infos #weakness {
   width: 100%;
 }
 section#infos #weakness ul {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, auto));
   gap: 5px;
   width: 100%;
   padding: 0 10px;
@@ -367,7 +471,7 @@ section#infos #weakness ul li {
   display: flex;
   flex-flow: column;
   min-width: 90px;
-  width: calc(100% / 9 - 5px);
+  width: 100%;
   height: 60px;
   background: var(--principal-color);
   border-radius: 10px;
@@ -394,6 +498,20 @@ section#infos #evolutionary {
   width: 100%;
   border-bottom: 2px solid var(--principal-color);
   padding: 40px 10px 10px;
+}
+section#infos #evolutionary a {
+  position: relative;
+}
+section#infos #evolutionary a span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 5px;
+  font-size: 12px;
+  border-radius: 0 0 0 5px;
+  background: white;
+  color: var(--principal-color);
+  white-space: nowrap;
 }
 section#infos #alternative img,
 section#infos #evolutionary img {
@@ -463,8 +581,8 @@ section#infos #drops ul li {
   background: rgb(161, 161, 161);
   transition: 0.5s ease;
 }
-section#infos #drops ul li:hover {
-  background: var(--principal-color);
+section#infos #drops ul li:hover a img {
+  scale: 1.1;
 }
 section#infos #drops ul li a {
   display: block;
@@ -478,6 +596,7 @@ section#infos #drops ul li a img {
   position: relative;
   height: 100%;
   width: 60px;
+  transition: 0.5s ease;
 }
 section#infos #drops ul li a span {
   position: absolute;
@@ -514,7 +633,7 @@ section#infos #respawn ul {
   border-right: 1px solid black;
   overflow-y: auto;
 }
-section#infos #respawn ul li {
+section#infos #respawn ul .route {
   display: flex;
   flex-flow: column;
   width: 100%;
@@ -527,15 +646,15 @@ section#infos #respawn ul li {
   border-bottom: 1px solid black;
   cursor: pointer;
 }
-section#infos #respawn ul li span:last-child {
+section#infos #respawn ul .route span:last-child {
   font-size: 15px;
   line-height: 30px;
 }
-section#infos #respawn ul li:nth-child(2n) {
+section#infos #respawn ul .route:nth-child(2n) {
   background: white;
 }
-section#infos #respawn ul li:hover,
-section#infos #respawn ul li.selected {
+section#infos #respawn ul .route:hover,
+section#infos #respawn ul .route.selected {
   background: var(--principal-color);
   color: white;
   border-bottom: 1px solid transparent;
@@ -550,11 +669,17 @@ section#infos #respawn article {
   height: 400px;
 }
 section#infos #respawn article ul {
+  display: flex;
+  flex-flow: column;
   width: 98%;
   border: none;
-  border-radius: 15px;
+  border-radius: 15px 0 0 15px;
   padding: 0;
   margin-bottom: 10px;
+}
+section#infos #respawn article ul li {
+  display: flex;
+  flex-flow: row;
 }
 section#infos #respawn article ul li:nth-child(1n) {
   border-color: white;
@@ -567,6 +692,12 @@ section#infos #respawn article ul li span {
   align-items: center;
   justify-content: center;
   color: white;
+  font-size: 20px;
+  width: 50%;
+}
+section#infos #respawn article ul li a {
+  display: flex;
+  width: 100%;
 }
 section#infos #respawn article ul li img {
   width: 70px;

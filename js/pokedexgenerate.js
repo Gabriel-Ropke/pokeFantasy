@@ -29,8 +29,8 @@ for (let i = 0; i < allPokemon.length; i++) {
   pokeCard.style.background = `var(--${allPokemon[i].types[0]})`;
   pokeHref.href = "pokemon.html";
   name.innerText = allPokemon[i].name;
-  number.innerText = allPokemon[i].numberDex;
-  pokeImg.src = allPokemon[i].sprite;
+  number.innerText = `#${allPokemon[i].numberDex}`;
+  pokeImg.src = allPokemon[i].animated;
 
   for (let ii = 0; ii < allPokemon[i].types.length; ii++) {
     let type = document.createElement("span");

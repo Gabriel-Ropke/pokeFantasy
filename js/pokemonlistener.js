@@ -1,3 +1,14 @@
+const nav = document.querySelector("nav");
+window.addEventListener("scroll", () => {
+  if (scrollY > 30) {
+    nav.classList.add("closed");
+  } else {
+    nav.classList.remove("closed");
+  }
+});
+nav.addEventListener("click", () => {
+  nav.classList.remove("closed");
+});
 const moveset = document.getElementById("moveset");
 const movesetClose = document.querySelector("#moveset p");
 const moves = document.querySelectorAll("#moveset ul li");

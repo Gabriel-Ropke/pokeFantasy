@@ -1,28 +1,12 @@
-@media (max-width: 970px) {
-  section#pokedex .poke-card {
-    width: calc(100% / 3 - 10px);
-  }
-}
-@media (max-width: 740px) {
-  section#pokedex .poke-card {
-    width: calc(100% / 2 - 10px);
-  }
-}
 @media (max-width: 500px) {
   section#pokedex {
     margin: 80px auto 40px;
     width: 85%;
-  }
-  section#pokedex .poke-card {
-    width: 75%;
   }
 }
 @media (max-width: 320px) {
   section#pokedex {
     padding: 10px 15px 15px;
     border-radius: 5px;
-  }
-  section#pokedex .poke-card {
-    width: 100%;
   }
 }

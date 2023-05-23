@@ -1,8 +1,3 @@
-@media (max-width: 1030px) {
-  section#infos #weakness ul li {
-    width: calc(100% / 8 - 5px);
-  }
-}
 @media (max-width: 1000px) {
   section#infos #general ul li .types {
     flex-flow: column;
@@ -10,21 +5,6 @@
   }
   section#infos #general ul li .types p {
     width: 100%;
-  }
-}
-@media (max-width: 935px) {
-  section#infos #weakness ul li {
-    width: calc(100% / 7 - 5px);
-  }
-}
-@media (max-width: 840px) {
-  section#infos #weakness ul li {
-    width: calc(100% / 6 - 5px);
-  }
-}
-@media (max-width: 744px) {
-  section#infos #weakness ul li {
-    width: calc(100% / 5 - 5px);
   }
 }
 @media (max-width: 730px) {
@@ -61,28 +41,20 @@
     display: none;
   }
 }
-@media (max-width: 720px) {
-  section#infos #general ul li {
-    width: calc(100% / 4 - 10px);
+@media (max-width: 675px) {
+  section#infos #general #pseudo-list {
+    flex-flow: column;
+  }
+  section#infos #general #pseudo-list ul {
+    width: 100%;
   }
 }
 @media (max-width: 650px) {
-  section#infos #weakness ul li {
-    width: calc(100% / 4 - 5px);
-  }
   section#infos #stats ul li {
     width: 95%;
   }
 }
-@media (max-width: 610px) {
-  section#infos #general ul li {
-    width: calc(100% / 3 - 10px);
-  }
-}
 @media (max-width: 555px) {
-  section#infos #weakness ul li {
-    width: calc(100% / 3 - 5px);
-  }
   section#infos #stats ul li .bar-out {
     display: none;
   }
@@ -95,9 +67,6 @@
   }
 }
 @media (max-width: 500px) {
-  section#infos #general ul li {
-    width: calc(100% / 2 - 10px);
-  }
   section#infos #general ul .abilities {
     width: 100%;
   }
@@ -107,15 +76,23 @@
   }
 }
 @media (max-width: 460px) {
-  section#infos #weakness ul li {
-    width: calc(100% / 2 - 5px);
-  }
   section#infos #evolutionary {
     flex-flow: column;
   }
   section#infos #evolutionary img {
     width: 150px;
     height: 150px;
+  }
+  article#move #moveInfo {
+    grid-template-rows: 10% 70% 20%;
+    grid-template-columns: 40% 60%;
+  }
+  article#move #moveInfo ul li {
+    font-size: 13px;
+  }
+  article#move #moveInfo #description,
+  article#move #moveInfo #effects {
+    font-size: 10px;
   }
 }
 @media (max-width: 430px) {
@@ -124,11 +101,6 @@
   }
   h2 {
     font-size: 20px;
-  }
-}
-@media (max-width: 390px) {
-  section#infos #general ul li {
-    width: calc(100% / 1 - 10px);
   }
 }
 @media (max-width: 380px) {
@@ -142,11 +114,25 @@
   }
 }
 @media (max-width: 371px) {
-  section#infos #weakness ul li {
-    width: calc(100% / 1 - 5px);
-  }
   section#infos #general {
     padding-top: 60px;
+  }
+}
+@media (max-width: 350px) {
+  article#move #moveInfo {
+    grid-template-rows: 10% 90%;
+    grid-template-columns: 50% 50%;
+    grid-template-areas:
+      "name cat-type"
+      "list effect";
+  }
+  article#move #moveInfo #description {
+    display: none;
+  }
+  article#move #moveInfo #effects {
+    width: 100%;
+    height: 100%;
+    padding: 25px;
   }
 }
 @media (max-width: 255px) {
@@ -162,14 +148,31 @@
     left: calc(80% - 30px);
   }
   article#moveset ul li {
-    width: 50%;
+    width: 100%;
+    height: 100%;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+  article#moveset ul li img {
+    width: 45px;
+    height: 45px;
   }
   article#moveset ul li span {
-    display: none;
+    position: static;
+    transform: translate(0, 0);
+    opacity: 1;
+    visibility: visible;
+    font-size: 14px;
+    left: 0;
+  }
+  article#moveset ul li:hover span {
+    transform: translate(0, 0);
   }
   article#moveset ul {
     width: calc(100% - 50px);
-    flex-wrap: wrap;
+    grid-template-rows: repeat(6, 82px);
+    grid-template-columns: 50% 50%;
   }
   section#infos.closed {
     visibility: hidden;
