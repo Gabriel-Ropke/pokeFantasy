@@ -1,0 +1,54 @@
+section#abilitydex {
+  gap: 10px;
+  width: 90%;
+  height: auto;
+  margin: 140px auto 40px;
+  background-color: white;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2);
+  padding: 20px 15px 30px;
+  border-radius: 25px;
+}
+section#abilitydex ul {
+  display: flex;
+  flex-flow: column;
+  gap: 5px;
+}
+section#abilitydex ul li {
+  width: 100%;
+  height: 60px;
+  padding: 0 15px;
+  background: green;
+  border-radius: 10px 0 10px 10px;
+}
+section#abilitydex ul li a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+section#abilitydex ul li a span {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  width: 300px;
+  margin-right: 20px;
+}
+section#abilitydex ul li a p {
+  width: calc(100% - 320px);
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 500px) {
+  section#abilitydex ul li a span {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+  section#abilitydex ul li a p {
+    display: none;
+  }
+}

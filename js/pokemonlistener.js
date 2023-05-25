@@ -25,6 +25,11 @@ movesetClose.addEventListener("click", () => {
   } else {
     infoContainer.classList.remove("closed");
   }
+  if (moveset.classList.contains("closed")) {
+    nav.classList.add("left");
+  } else {
+    nav.classList.remove("left");
+  }
 });
 moves.forEach((e) => {
   e.addEventListener("click", () => {
@@ -43,20 +48,6 @@ evolutionListener.forEach((e) => {
   e.addEventListener("click", () => {
     localStorage.setItem("selectedPokemon", e.id);
   });
-});
-const preview = document.querySelector("#preview a p");
-const next = document.querySelector("#next a p");
-preview.addEventListener("click", () => {
-  localStorage.setItem(
-    "selectedPokemon",
-    localStorage.getItem("selectedPokemon") - 1
-  );
-});
-next.addEventListener("click", () => {
-  localStorage.setItem(
-    "selectedPokemon",
-    Math.floor(localStorage.getItem("selectedPokemon")) + 1
-  );
 });
 const drops = document.querySelectorAll("#drops ul li");
 drops.forEach((e) => {

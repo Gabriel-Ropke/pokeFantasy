@@ -15,7 +15,7 @@ export const allPokemon = [
     numberDex: "001",
     types: ["grass", "poison"],
     species: "Seed Pokémon",
-    abilities: ["Overgrow", "Chlorophyll", "wonder guard"],
+    abilities: ["overgrow", "chlorophyll"],
     stats: ["45", "49", "49", "65", "65", "45"],
     catchRate: "10%",
     bestNatures: ["Modest", "Bold"],
@@ -55,7 +55,7 @@ export const allPokemon = [
     numberDex: "002",
     types: ["grass", "poison"],
     species: "Seed Pokémon",
-    abilities: ["Overgrow", "Chlorophyll"],
+    abilities: ["overgrow", "chlorophyll"],
     stats: ["60", "62", "63", "80", "80", "60"],
     catchRate: "5%",
     bestNatures: ["Modest", "Bold"],
@@ -95,7 +95,7 @@ export const allPokemon = [
     numberDex: "003",
     types: ["grass", "poison"],
     species: "Seed Pokémon",
-    abilities: ["Overgrow", "Chlorophyll"],
+    abilities: ["overgrow", "chlorophyll"],
     stats: ["80", "82", "83", "100", "100", "80"],
     catchRate: "1%",
     bestNatures: ["Modest", "Bold"],
@@ -135,7 +135,7 @@ export const allPokemon = [
     numberDex: "004",
     types: ["fire"],
     species: "Lizard Pokémon",
-    abilities: ["Blaze", "Solar Power"],
+    abilities: ["blaze", "solar power"],
     stats: ["39", "52", "43", "60", "50", "65"],
     catchRate: "10%",
     bestNatures: ["Modest", "Relaxed"],
@@ -175,7 +175,7 @@ export const allPokemon = [
     numberDex: "005",
     types: ["fire"],
     species: "Flame Pokémon",
-    abilities: ["Blaze", "Solar Power"],
+    abilities: ["blaze", "solar power"],
     stats: ["58", "64", "58", "80", "65", "80"],
     catchRate: "5%",
     bestNatures: ["Modest", "Relaxed"],
@@ -215,7 +215,7 @@ export const allPokemon = [
     numberDex: "006",
     types: ["fire", "flying"],
     species: "Flame Pokémon",
-    abilities: ["Blaze", "Solar Power"],
+    abilities: ["blaze", "solar power"],
     stats: ["78", "84", "78", "109", "85", "100"],
     catchRate: "1%",
     bestNatures: ["Modest", "Relaxed"],
@@ -255,7 +255,7 @@ export const allPokemon = [
     numberDex: "007",
     types: ["water"],
     species: "Tiny Turtle Pokémon",
-    abilities: ["Torrent", "Rain Dish"],
+    abilities: ["torrent", "rain dish"],
     stats: ["44", "48", "65", "50", "64", "43"],
     catchRate: "10%",
     bestNatures: ["Modest", "Relaxed"],
@@ -295,7 +295,7 @@ export const allPokemon = [
     numberDex: "008",
     types: ["water"],
     species: "Turtle Pokémon",
-    abilities: ["Torrent", "Rain Dish"],
+    abilities: ["torrent", "rain dish"],
     stats: ["59", "63", "80", "65", "80", "58"],
     catchRate: "5%",
     bestNatures: ["Modest", "Relaxed"],
@@ -335,7 +335,7 @@ export const allPokemon = [
     numberDex: "009",
     types: ["water"],
     species: "Shellfish Pokémon",
-    abilities: ["Torrent", "Rain Dish"],
+    abilities: ["torrent", "rain dish"],
     stats: ["79", "83", "100", "85", "105", "78"],
     catchRate: "1%",
     bestNatures: ["Modest", "Relaxed"],
@@ -379,8 +379,8 @@ export const allMoves = [
     category: "Special",
     moveSource: "moves/ember.jpg",
     categorySource: "img/special.png",
-    description: "lorem",
-    effects: "burn",
+    description: "Has a 10% chance to burn the target.",
+    effects: "Has a 10% chance to burn the target.",
     attributes: ["40", "6.20", "100", "3s"],
   },
   {
@@ -389,9 +389,11 @@ export const allMoves = [
     category: "physical",
     moveSource: "moves/fireFang.jpg",
     categorySource: "img/physical.png",
-    description: "lorem",
-    effects: "burn",
-    attributes: ["70", "11.20", "100", "9s"],
+    description:
+      "Has a 10% chance to burn the target and a 10% chance to make it flinch.",
+    effects:
+      "Has a 10% chance to burn the target and a 10% chance to make it flinch.",
+    attributes: ["65", "11.20", "95", "9s"],
   },
   {
     name: "Flamethrower",
@@ -399,8 +401,8 @@ export const allMoves = [
     category: "physical",
     moveSource: "moves/flamethrower.jpg",
     categorySource: "img/physical.png",
-    description: "lorem",
-    effects: "burn",
+    description: "Has a 10% chance to burn the target.",
+    effects: "Has a 10% chance to burn the target.",
     attributes: ["90", "15.20", "100", "15s"],
   },
   {
@@ -409,8 +411,8 @@ export const allMoves = [
     category: "special",
     moveSource: "moves/bubble.webp",
     categorySource: "img/special.png",
-    description: "lorem",
-    effects: "dry",
+    description: "Has a 10% chance to lower the target's Speed by 1 stage.",
+    effects: "Has a 10% chance to lower the target's Speed by 1 stage.",
     attributes: ["40", "6.20", "100", "3s"],
   },
   {
@@ -419,9 +421,9 @@ export const allMoves = [
     category: "special",
     moveSource: "moves/bubbleBeam.jpg",
     categorySource: "img/special.png",
-    description: "lorem",
-    effects: "dry",
-    attributes: ["80", "13.20", "100", "12s"],
+    description: "Has a 10% chance to lower the target's Speed by 1 stage.",
+    effects: "Has a 10% chance to lower the target's Speed by 1 stage.",
+    attributes: ["65", "13.20", "100", "12s"],
   },
   {
     name: "tackle",
@@ -429,8 +431,8 @@ export const allMoves = [
     category: "Special",
     moveSource: "moves/tackle.webp",
     categorySource: "img/physical.png",
-    description: "lorem",
-    effects: "burn",
+    description: "No additional effect.",
+    effects: "No additional effect.",
     attributes: ["40", "5.80", "100", "2s"],
   },
   {
@@ -439,9 +441,9 @@ export const allMoves = [
     category: "Special",
     moveSource: "moves/vineWhip.png",
     categorySource: "img/physical.png",
-    description: "lorem",
-    effects: "burn",
-    attributes: ["40", "11.20", "100", "5s"],
+    description: "No additional effect.",
+    effects: "No additional effect.",
+    attributes: ["45", "11.20", "100", "5s"],
   },
   {
     name: "leech seed",
@@ -449,9 +451,11 @@ export const allMoves = [
     category: "Special",
     moveSource: "moves/leechSeed.webp",
     categorySource: "img/physical.png",
-    description: "lorem",
-    effects: "burn",
-    attributes: ["--", "23.80", "100", "15s"],
+    description:
+      "The Pokemon at the user's position steals 1/8 of the target's maximum HP, rounded down, at the end of each turn",
+    effects:
+      "The Pokemon at the user's position steals 1/8 of the target's maximum HP, rounded down, at the end of each turn",
+    attributes: ["--", "23.80", "90", "15s"],
   },
   {
     name: "solar beam",
@@ -459,8 +463,10 @@ export const allMoves = [
     category: "Special",
     moveSource: "moves/solarBeam.jpg",
     categorySource: "img/special.png",
-    description: "lorem",
-    effects: "burn",
+    description:
+      "This attack charges on the first turn and executes on the second.",
+    effects:
+      "This attack charges on the first turn and executes on the second.",
     attributes: ["120", "23.80", "100", "30s"],
   },
 ];
@@ -471,6 +477,7 @@ export const allDrops = [
     Rarity: "rare",
     description: "lorem",
     sprite: "drops/bulb.png",
+    type: "drop",
   },
   {
     name: "bag of pollem",
@@ -478,13 +485,15 @@ export const allDrops = [
     Rarity: "uncommon",
     description: "lorem",
     sprite: "drops/BagOfPollem.png",
+    type: "drop",
   },
   {
     name: "essence of fire",
     Value: "3",
     Rarity: "common",
     description: "lorem",
-    sprite: "drops/Essence_of_fire.png",
+    sprite: "drops/essence_of_fire.png",
+    type: "drop",
   },
   {
     name: "fire tail",
@@ -492,6 +501,7 @@ export const allDrops = [
     Rarity: "rare",
     description: "lorem",
     sprite: "drops/Fire_Tail.png",
+    type: "drop",
   },
   {
     name: "leaves",
@@ -499,6 +509,7 @@ export const allDrops = [
     Rarity: "uncommon",
     description: "lorem",
     sprite: "drops/Leaves.png",
+    type: "drop",
   },
   {
     name: "sandbag",
@@ -506,6 +517,7 @@ export const allDrops = [
     Rarity: "uncommon",
     description: "lorem",
     sprite: "drops/Sandbag.png",
+    type: "drop",
   },
   {
     name: "seed",
@@ -513,6 +525,7 @@ export const allDrops = [
     Rarity: "common",
     description: "lorem",
     sprite: "drops/seed.png",
+    type: "drop",
   },
   {
     name: "squirtle hull",
@@ -520,6 +533,7 @@ export const allDrops = [
     Rarity: "rare",
     description: "lorem",
     sprite: "drops/Squirtle_Hull.png",
+    type: "drop",
   },
   {
     name: "water gem",
@@ -527,6 +541,7 @@ export const allDrops = [
     Rarity: "common",
     description: "lorem",
     sprite: "drops/Water_gem.png",
+    type: "drop",
   },
   {
     name: "water pendant",
@@ -534,6 +549,7 @@ export const allDrops = [
     Rarity: "uncommon",
     description: "lorem",
     sprite: "drops/WaterPendant.png",
+    type: "drop",
   },
   {
     name: "pot of lava",
@@ -541,27 +557,69 @@ export const allDrops = [
     Rarity: "uncommon",
     description: "lorem",
     sprite: "drops/PotOfLava.png",
+    type: "drop",
   },
   {
     name: "water stone",
     Value: "50.000",
     Rarity: "legendary",
-    description: "lorem",
+    description: "Evolves certain species of Pokemon when used.",
     sprite: "drops/waterStone.webp",
+    type: "evolutionary",
   },
   {
     name: "leaf stone",
     Value: "50.000",
     Rarity: "legendary",
-    description: "lorem",
+    description: "Evolves certain species of Pokemon when used.",
     sprite: "drops/leafStone.png",
+    type: "evolutionary",
   },
   {
     name: "fire stone",
     Value: "50.000",
     Rarity: "legendary",
-    description: "lorem",
+    description: "Evolves certain species of Pokemon when used.",
     sprite: "drops/Fire-stone.gif",
+    type: "evolutionary",
+  },
+];
+export const allAbilities = [
+  {
+    name: "blaze",
+    description:
+      "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its offensive stat is multiplied by 1.5 while using a Fire-type attack.",
+    type: "fire",
+  },
+  {
+    name: "solar power",
+    description:
+      "If Sunny Day is active, this Pokemon's Special Attack is multiplied by 1.5 and it loses 1/8 of its maximum HP, rounded down, at the end of each turn. These effects are prevented if the Pokemon is holding a Utility Umbrella.",
+    type: "fire",
+  },
+  {
+    name: "rain dish",
+    description:
+      "If Rain Dance is active, this Pokemon restores 1/16 of its maximum HP, rounded down, at the end of each turn. This effect is prevented if this Pokemon is holding a Utility Umbrella.",
+    type: "water",
+  },
+  {
+    name: "torrent",
+    description:
+      "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its offensive stat is multiplied by 1.5 while using a Water-type attack.",
+    type: "water",
+  },
+  {
+    name: "chlorophyll",
+    description:
+      "If Sunny Day is active, this Pokemon's Speed is doubled. This effect is prevented if this Pokemon is holding a Utility Umbrella.",
+    type: "grass",
+  },
+  {
+    name: "overgrow",
+    description:
+      "When this Pokemon has 1/3 or less of its maximum HP, rounded down, its offensive stat is multiplied by 1.5 while using a Grass-type attack.",
+    type: "grass",
   },
 ];
 export const allResps = [

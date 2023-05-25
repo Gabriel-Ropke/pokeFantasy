@@ -20,7 +20,7 @@ header {
   width: 100%;
   border-bottom: 1px solid rgb(185, 185, 185);
   background-color: var(--white-color);
-  transition: var(--tran-03);
+  transition: 0.3s ease;
   z-index: 100;
 }
 header.closed:hover {

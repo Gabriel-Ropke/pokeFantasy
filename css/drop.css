@@ -1,0 +1,107 @@
+h2,
+li,
+span,
+p {
+  font-weight: 600;
+}
+section#drop {
+  margin: 140px auto 60px;
+  background: white;
+  width: 90%;
+  min-height: 100vh;
+  border-radius: 25px;
+  border: 5px solid var(--principal-color);
+  overflow: hidden;
+}
+section#drop h2 {
+  width: 100%;
+  color: white;
+  background: var(--principal-color);
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 32px;
+  line-height: 60px;
+}
+section#drop #infoList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
+  width: 100%;
+}
+section#drop #infoList img {
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  border-radius: 20px;
+  background: var(--principal-color);
+}
+section#drop #infoList ul {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  max-width: 500px;
+  gap: 10px;
+}
+section#drop #infoList ul li {
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  flex-flow: column;
+  background: var(--principal-color);
+  text-align: center;
+  color: white;
+}
+section#drop #infoList ul li span {
+  color: black;
+  background: white;
+  border-radius: 5px;
+}
+section#drop #dropDescription {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+}
+section#drop #dropListTitle {
+  display: block;
+  width: 100%;
+  font-size: 23px;
+  text-align: center;
+  color: white;
+  background: var(--principal-color);
+  line-height: 40px;
+}
+section#drop #dropListTitle span {
+  white-space: nowrap;
+}
+section#drop #dropList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, auto));
+  gap: 5px;
+  padding: 20px;
+}
+section#drop #dropList li {
+  height: 100px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+section#drop #dropList li:hover {
+  filter: brightness(0.9);
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+section#drop #dropList li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+section#drop #dropList li img {
+  width: 100px;
+}
