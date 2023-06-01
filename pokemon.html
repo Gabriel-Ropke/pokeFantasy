@@ -4,53 +4,61 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/pokemon.css" />
+    <link rel="stylesheet" href="css/general/reset.css" />
+    <link rel="stylesheet" href="css/general/header.css" />
+    <link rel="stylesheet" href="css/selected/pokemon.css" />
     <script defer src="js/database.js"></script>
-    <script defer src="js/pokemongenerate.js" type="module"></script>
+    <script defer src="js/decoration.js"></script>
+    <script defer src="js/pokemon.js" type="module"></script>
     <script defer src="js/pokemonlistener.js"></script>
+    <link rel="stylesheet" href="css/responsive/pokemonResponsive.css" />
     <title>Pokémon</title>
   </head>
   <body>
+    <header class="pokemon-header"><ul></ul></header>
     <article id="move" class="closed">
       <b>x</b>
       <div id="moveInfo">
-        <span id="moveName"></span>
+        <span id="moveLevel"></span>
+        <span id="moveName"> </span>
         <ul></ul>
-        <div id="catType"></div>
+        <div id="catType">
+          <img src="" alt="" />
+          <span></span>
+        </div>
         <p id="description"></p>
         <p id="effects"></p>
       </div>
     </article>
     <article id="moveset">
-      <p>moveset</p>
+      <p>Moveset</p>
       <ul></ul>
     </article>
     <section id="infos">
       <div id="top">
         <div id="preview">
-          <a href="pokemon.html"><p></p></a>
+          <a href="pokemon.html"></a>
         </div>
         <h1 id="name">Charmander</h1>
         <div id="next">
-          <a href="pokemon.html"><p></p></a>
+          <a href="pokemon.html"></a>
         </div>
       </div>
       <div id="general">
         <h2>Informações Gerais</h2>
-        <div class="pseudo-list">
+        <div id="pseudo-list">
           <img src="" alt="" />
           <ul>
-            <li>Species <span class="species"></span></li>
-            <li>Types <span class="types"> </span></li>
+            <li>Abilities <span class="abilities"></span></li>
+            <li>EV Yields <span class="ev-yield"> </span></li>
           </ul>
         </div>
         <ul>
-          <li>Abilities <br /><span class="abilities"></span></li>
-          <li>Catch Rate <br /><span class="catch-rate"></span></li>
+          <li>Species <br /><span class="species"></span></li>
+          <li>Catch Rate* <br /><span class="catch-rate"></span></li>
+          <li>Types <br /><span class="types"></span></li>
           <li>width <br /><span class="width"></span></li>
           <li>height <br /><span class="height"></span></li>
-          <li>EV Yield <br /><span class="ev-yield"></span></li>
         </ul>
       </div>
       <div id="weakness">

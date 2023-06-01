@@ -1,0 +1,87 @@
+header {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 95px;
+  width: 100%;
+  border-bottom: 1px solid rgb(185, 185, 185);
+  background: white;
+  transition: 0.3s ease;
+  z-index: 100;
+}
+header.pokemon-header {
+  height: 50px;
+}
+header.closed {
+  height: 50px;
+}
+header.closed:hover {
+  height: 95px;
+}
+header ul {
+  display: flex;
+  justify-content: center;
+}
+header ul li {
+  text-transform: capitalize;
+  width: 120px;
+  height: calc(100% + 5px);
+  font-size: 18px;
+  transition: 0.3s ease;
+}
+header ul li a {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 1rem;
+  padding-bottom: 10px;
+  transition: 0.3s ease;
+}
+header ul li a p {
+  color: var(--black-light-color);
+}
+header ul li:hover a p,
+header ul li.active a p {
+  color: white;
+}
+header ul #headerindex {
+  border-bottom: 5px solid rgb(150, 150, 150);
+  border-radius: 0 0 0 5px;
+}
+header ul #headerindex:hover,
+header ul #headerindex.active {
+  background-color: rgb(150, 150, 150);
+}
+header ul #headerpokedex {
+  border-bottom: 5px solid var(--border-color-header1);
+}
+header ul #headerpokedex:hover,
+header ul #headerpokedex.active {
+  background-color: var(--border-color-header1);
+}
+header ul #headerdropdex {
+  border-bottom: 5px solid var(--border-color-header2);
+}
+header ul #headerdropdex:hover,
+header ul #headerdropdex.active {
+  background-color: var(--border-color-header2);
+}
+header ul #headermovedex {
+  border-bottom: 5px solid var(--border-color-header3);
+}
+header ul #headermovedex:hover,
+header ul #headermovedex.active {
+  background-color: var(--border-color-header3);
+}
+header ul #headerabilitydex {
+  border-bottom: 5px solid var(--border-color-header4);
+  border-radius: 0 0 5px 0;
+}
+header ul #headerabilitydex:hover,
+header ul #headerabilitydex.active {
+  background-color: var(--border-color-header4);
+}

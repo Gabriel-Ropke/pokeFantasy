@@ -1,0 +1,84 @@
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+section#dropdex {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  gap: 10px;
+  width: 90%;
+  margin: 140px auto 40px;
+  padding: 20px 15px 30px;
+  border-radius: 25px;
+  background: white;
+  box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.5);
+}
+/* DropCard */
+section#dropdex .drop-card {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 8px 0 8px 8px;
+  transition: 0.5s cubic-bezier(0, 0.69, 0.58, 1);
+  overflow: hidden;
+}
+section#dropdex .drop-card a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+section#dropdex .drop-card:hover {
+  animation: cardHover 0.5s;
+}
+section#dropdex .drop-card .top {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  padding: 0 15px;
+  font-size: 16px;
+}
+section#dropdex .drop-card .image {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+}
+section#dropdex .drop-card .image::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  top: 0;
+  width: 210px;
+  height: 210px;
+  background: url(../../img/general/pokeball.png);
+  background-size: cover;
+  rotate: 45deg;
+}
+section#dropdex .drop-card:hover .image::before {
+  animation: rotate 5s linear infinite;
+}
+section#dropdex .drop-card .image img {
+  position: relative;
+  min-height: 70px;
+  max-height: 100px;
+  max-width: 100px;
+}

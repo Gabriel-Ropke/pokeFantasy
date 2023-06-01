@@ -1,0 +1,101 @@
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+section#pokedex {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  gap: 10px;
+  width: 90%;
+  margin: 140px auto 40px;
+  padding: 20px 15px 30px;
+  border-radius: 20px;
+  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.8);
+  background: white;
+}
+/* PokeCard */
+section#pokedex .poke-card {
+  position: relative;
+  height: 200px;
+  border-radius: 8px 0 8px 8px;
+  transition: 0.5s cubic-bezier(0, 0.69, 0.58, 1);
+}
+section#pokedex .poke-card:hover {
+  animation: cardHover 0.5s;
+}
+section#pokedex .poke-card a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+section#pokedex .poke-card .top {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  font-size: 18px;
+  color: white;
+}
+section#pokedex .poke-card .image {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+section#pokedex .poke-card .image::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  top: 0;
+  rotate: 45deg;
+  width: 140px;
+  height: 140px;
+  background: url(../../img/general/pokeball.png);
+  background-size: cover;
+}
+section#pokedex .poke-card:hover .image::before {
+  animation: rotate 5s linear infinite;
+}
+section#pokedex .poke-card .image img {
+  position: relative;
+  min-height: 70px;
+  z-index: 20;
+}
+
+section#pokedex .poke-card .types {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  bottom: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  padding: 8px 0;
+  border-radius: 5px;
+  background: white;
+  z-index: 1;
+}
+section#pokedex .poke-card .types .type {
+  text-transform: capitalize;
+  text-align: center;
+  border-radius: 5px;
+  padding: 2px 0;
+  width: 45%;
+  color: white;
+}

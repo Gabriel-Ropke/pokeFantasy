@@ -1,0 +1,12 @@
+@media (max-width: 500px) {
+  section#pokedex {
+    margin: 80px auto 40px;
+    width: 85%;
+  }
+}
+@media (max-width: 320px) {
+  section#pokedex {
+    padding: 10px 15px 15px;
+    border-radius: 5px;
+  }
+}
