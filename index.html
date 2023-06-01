@@ -4,81 +4,74 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- Font Awesome -->
-        <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      />
-      <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/footer.css" />
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/pokedex.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="css/general/reset.css" />
+    <link rel="stylesheet" href="css/general/header.css" />
+    <link rel="stylesheet" href="css/general/footer.css" />
+    <link rel="stylesheet" href="css/home.css" />
     <script defer src="js/decoration.js"></script>
-    <script defer src="js/pokedexgenerate.js" type="module"></script>
-    <script defer src="js/pokedexlistener.js"></script>
-    <link rel="stylesheet" href="css/dex-responsive.css">
-    <link rel="stylesheet" href="css/general-responsive.css">
-    <title>PokeDéx</title>
+    <script defer src="js/database.js"></script>
+    <script defer src="js/home.js" type="module"></script>
+    <title>Home</title>
   </head>
   <body>
-    <!-- Header -->
-    <header>
-      <ul>
-        <li id="News">
-          <a href="index.html">
-            <p>Home</p>
+    <header><ul></ul></header>
+    <div id="onlyBg">
+      <section id="home">
+        <article id="first">
+          <a href="#">
+            <img src="img/moves/bubble.webp" alt="" />
+            <span>
+              <h1>Novas Dungeons. Confira!</h1>
+              <p>No dia 31/02 foram adicionadas novas dungeon ao PokéFantasy</p>
+            </span>
           </a>
-        </li>
-        <li id="Pokedex">
-          <a href="pokedex.html">
-            <p>PokéDex</p>
-          </a>
-        </li>
-        <li id="Pokefantasy">
-            <a href="PokéFantasy">
-            <p>PokéFantasy</p>
-          </a>
-        </li>
-        <li id="EVseIVs">
-          <a href="evs.html">
-            <p>EV's e IV's</p>
-          </a>
-        </li>
-      </ul>
-    </header>
-    <section id="pokedex">
-    </section>
-    <footer>
-      <div class="random">
-        <img src="img/squirtleShiny.png" alt="" />
-      </div>
-      <ul id="footerSocial">
-          <button>
-            <i class="fab fa-discord"></i>
-          </button>
-          <button>
-            <i class="fab fa-twitter"></i>
-          </button>
-          <button>
-            <i class="fab fa-youtube"></i>
-          </button>
+        </article>
+        <div>
+          <article>
+            <a href="#">
+              <img src="img/moves/bubble.webp" alt="" />
+              <span>
+                <h2>Novas Dungeons. Confira!</h2>
+                <p>
+                  No dia 31/02 foram adicionadas novas dungeon ao PokéFantasy
+                </p>
+              </span>
+            </a>
+          </article>
+          <article>
+            <a href="#">
+              <img src="img/moves/bubble.webp" alt="" />
+              <span>
+                <h2>Novas Dungeons. Confira!</h2>
+                <p>
+                  No dia 31/02 foram adicionadas novas dungeon ao PokéFantasy
+                </p>
+              </span>
+            </a>
+          </article>
+          <article>
+            <a href="#">
+              <img src="img/moves/bubble.webp" alt="" />
+              <span>
+                <h2>Novas Dungeons. Confira!</h2>
+                <p>
+                  No dia 31/02 foram adicionadas novas dungeon ao PokéFantasy
+                </p>
+              </span>
+            </a>
+          </article>
         </div>
-      </ul>
-      <p id="copyright">&#169; Direitos reservados a Froga.</p>
-      <ul id="footerLinks">
-        <li>
-          <a href=""><p>FAQ</p></a>
-        </li>
-        <li>
-          <a href=""><p>Sobre Nós</p></a>
-        </li>
-        <li>
-          <a href=""><p>Sei lá</p></a>
-        </li>
-        <li>
-          <a href=""><p>Sei lá</p></a>
-        </li>
-      </ul>
-    </footer>
+      </section>
+      <div id="carouselWrapper">
+        <div class="nav-btn prev"></div>
+        <ul id="pokemonCarousel"></ul>
+        <div class="nav-btn next"></div>
+      </div>
+    </div>
+    <footer></footer>
   </body>
 </html>
