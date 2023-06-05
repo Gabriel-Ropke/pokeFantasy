@@ -1,4 +1,4 @@
-import { allPokemon } from "./database.js";
+import { allPokemon } from "./database/database.js";
 console.log(allPokemon.length);
 const pokedex = document.getElementById("pokedex");
 
@@ -41,3 +41,43 @@ for (let i = 0; i < allPokemon.length; i++) {
     console.log(allPokemon[i].name + allPokemon[i].types[0]);
   }
 }
+const selectionPages = document.querySelectorAll("#selection h2");
+const pokemonPage = document.getElementById("pokedex");
+const movePage = document.getElementById("movedex");
+const dropPage = document.getElementById("dropdex");
+const abilityPage = document.getElementById("abilitydex");
+function closePages() {
+  pokedex.classList.add("inactive");
+  movePage.classList.add("inactive");
+  dropPage.classList.add("inactive");
+  abilityPage.classList.add("inactive");
+}
+selectionPages.forEach((e) => {
+  e.addEventListener("click", () => {
+    e.classList.add("active");
+    console.log(e.id);
+    if (e.id == "pokemonPage") {
+      closePages();
+      pokemonPage.classList.remove("inactive");
+    }
+    if (e.id == "movePage") {
+      closePages();
+      movePage.classList.remove("inactive");
+    }
+    if (e.id == "dropPage") {
+      closePages();
+      dropPage.classList.remove("inactive");
+    }
+    if (e.id == "abilityPage") {
+      closePages();
+      abilityPage.classList.remove("inactive");
+    }
+    selectionPages.forEach((elm) => {
+      if (elm.id == e.id) {
+        elm.classList.add("active");
+      } else {
+        elm.classList.remove("active");
+      }
+    });
+  });
+});

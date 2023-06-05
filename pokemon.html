@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/general/reset.css" />
     <link rel="stylesheet" href="css/general/header.css" />
     <link rel="stylesheet" href="css/selected/pokemon.css" />
-    <script defer src="js/database.js"></script>
     <script defer src="js/decoration.js"></script>
     <script defer src="js/pokemon.js" type="module"></script>
     <script defer src="js/pokemonlistener.js"></script>
@@ -82,9 +81,18 @@
       </div>
       <div id="respawn">
         <h2>Respawns</h2>
-        <ul class="respawn-list"></ul>
-        <article>
-          <h2 class="title"></h2>
+        <article id="respDung">
+          <div id="switchRespDung">
+            <span class="selected">
+              <img src="img/drops/Helix_Fossil.png" alt="" />Respawn</span
+            >
+            <span><img src="img/drops/Helix_Fossil.png" alt="" />Dungeon</span>
+          </div>
+          <ul id="respawnList" class="active"></ul>
+          <ul id="dungeonList"></ul>
+        </article>
+        <article id="showRespDung">
+          <h2 class="title"><a href="#"></a></h2>
           <ul></ul>
         </article>
       </div>

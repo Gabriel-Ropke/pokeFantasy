@@ -1,4 +1,4 @@
-import { allAbilities } from "./database.js";
+import { allAbilities } from "./database/database.js";
 
 const ul = document.querySelector("#abilitydex ul");
 allAbilities.forEach((e) => {

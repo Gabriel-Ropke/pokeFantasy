@@ -1,4 +1,4 @@
-import { allMoves, allPokemon } from "./database.js";
+import { allMoves, allPokemon } from "./database/database.js";
 
 const URLInfo = new URLSearchParams(window.location.search);
 const selectedMove = allMoves.find((e) => e.name == URLInfo.get("move"));

@@ -14,13 +14,7 @@ if (innerWidth <= 500) {
   });
 }
 /* Create Header */
-const headerListArray = [
-  "index",
-  "pokedex",
-  "movedex",
-  "dropdex",
-  "abilitydex",
-];
+const headerListArray = ["index", "pokedex"];
 const headerList = document.querySelector("header ul");
 headerList.innerHTML = "";
 for (let i = 0; i < headerListArray.length; i++) {

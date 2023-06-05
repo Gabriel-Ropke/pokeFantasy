@@ -14,11 +14,6 @@ movesetClose.addEventListener("click", () => {
   } else {
     infoContainer.classList.remove("closed");
   }
-  if (moveset.classList.contains("closed")) {
-    nav.classList.add("left");
-  } else {
-    nav.classList.remove("left");
-  }
 });
 moves.forEach((e) => {
   e.addEventListener("click", () => {

@@ -1,12 +1,13 @@
 import {
   allDrops,
+  allDungeon,
   allMoveInfo,
   allMoves,
   allPokemon,
   allResps,
   allStats,
   allWeakness,
-} from "./database.js";
+} from "./database/database.js";
 const URLInfo = new URLSearchParams(window.location.search);
 const selectedPokemon = allPokemon.find(
   (e) => Math.floor(e.numberDex) == URLInfo.get("id")
@@ -89,6 +90,7 @@ const preview = allPokemon.find(
 const next = allPokemon.find(
   (e) => e.numberDex == Math.floor(selectedPokemon.numberDex) + 1
 );
+/*
 if (Math.floor(selectedPokemon.numberDex) == 1) {
   nextPokemon.innerText = `${next.name} #${next.numberDex} `;
   nextPokemon.href = `pokemon.html?id=${next.numberDex}`;
@@ -101,6 +103,7 @@ if (Math.floor(selectedPokemon.numberDex) == 1) {
   previewPokemon.href = `pokemon.html?id=${preview.numberDex}`;
   nextPokemon.href = `pokemon.html?id=${next.numberDex}`;
 }
+*/
 principalTitle.innerText = selectedPokemon.name;
 
 /* General Info */
@@ -172,7 +175,11 @@ shinyForm.src = selectedPokemon.shinyAnimated;
 
 const evolutionary = document.getElementById("evolutionary");
 selectedPokemon.evolutionary.forEach((e) => {
-  const evolution = allPokemon.find((sear) => sear.name == e);
+  console.log(e);
+  const evolution = allPokemon.find(
+    (sear) => sear.name.toLowerCase() == e.toLowerCase()
+  );
+  console.log(evolution);
   let aHref = document.createElement("a");
   let spanLevel = document.createElement("span");
   let imgEvolution = document.createElement("img");
@@ -208,7 +215,6 @@ for (let i = 0; i < selectedPokemon.stats.length; i++) {
 
 /* Drops */
 const dropList = document.querySelector("#drops ul");
-
 selectedPokemon.drops.forEach((e) => {
   const searchDrops = allDrops.find((sear) => sear.name == e);
   let newDrop = document.createElement("li");
@@ -219,66 +225,125 @@ selectedPokemon.drops.forEach((e) => {
   newDrop.appendChild(newDropHref);
   newDropHref.appendChild(newDropImg);
   newDropHref.appendChild(newDropName);
-  newDrop.style.background = `var(--${searchDrops.Rarity})`;
+  newDrop.style.background = `rgba(var(--${searchDrops.Rarity}))`;
   newDropName.innerText = searchDrops.name;
   newDropHref.href = `drop.html?drop=${searchDrops.name}`;
   newDropImg.src = searchDrops.sprite;
 });
 /* Resps */
-const resps = document.querySelector(".respawn-list");
-selectedPokemon.routes.forEach((e) => {
+const respawnList = document.getElementById("respawnList");
+const dungeonList = document.getElementById("dungeonList");
+function createNewRespLi(pokemon, list) {
   let newResp = document.createElement("li");
   let newRespName = document.createElement("span");
   let newRespLevel = document.createElement("span");
-  resps.appendChild(newResp);
+  list.appendChild(newResp);
   newResp.appendChild(newRespName);
   newResp.appendChild(newRespLevel);
   newResp.classList.add("route");
   newRespName.classList.add("name");
-  newRespName.innerText = e.name;
-  newRespLevel.innerText = `Nvl ${e.level}`;
+  newRespName.innerText = pokemon.name;
+  newRespLevel.innerText = `Nvl ${pokemon.minlevel} ~ ${pokemon.maxlevel}`;
+}
+selectedPokemon.routes.forEach((resp) => {
+  createNewRespLi(resp, respawnList);
 });
+if (selectedPokemon.dungeon) {
+  selectedPokemon.dungeon.forEach((dung) => {
+    createNewRespLi(dung, dungeonList);
+  });
+} else {
+  let alert = document.createElement("span");
+  alert.innerText = "Este Pokémon não tem Dungeons.";
+  alert.classList.add("alert");
+  dungeonList.appendChild(alert);
+  dungeonList.style.borderRight = "0px";
+}
+
 /* Selected Resp Info */
-const respawnTitle = document.querySelector("#respawn article .title");
-const respawn = document.querySelectorAll(".respawn-list li");
-const selectedRespawnList = document.querySelector("#respawn article ul");
-respawn.forEach((e) => {
-  if (window.innerWidth >= 730) {
-    e.addEventListener("click", () => {
-      selectedRespawnList.innerHTML = "";
-      respawnTitle.innerText = e.firstChild.innerText;
-      const selectedRespawn = allResps.find(
-        (e) => e.name == respawnTitle.innerText
-      );
-      e.classList.add("selected");
+function createNewAppear(poke, selected) {
+  let liResp = document.createElement("li");
+  let aHref = document.createElement("a");
+  let divAppear = document.createElement("div");
+  let spanName = document.createElement("span");
+  let imgAppear = document.createElement("img");
+  let spanLevel = document.createElement("span");
+  showRespDung.appendChild(liResp);
+  liResp.appendChild(aHref);
+  aHref.appendChild(divAppear);
+  divAppear.appendChild(imgAppear);
+  divAppear.appendChild(spanName);
+  aHref.appendChild(spanLevel);
+  spanName.classList.add("name");
+  liResp.style.background = `rgba(var(--${poke.types[0]}))`;
+  spanName.innerText = poke.name;
+  aHref.href = `pokemon.html?id=${poke.numberDex}`;
+  spanLevel.innerText = `Nvl. ${selected.minlevel} ~  ${selected.maxlevel}`;
+  imgAppear.src = poke.sprite;
+}
+const title = document.querySelector("#respawn article .title a");
+const respawn = document.querySelectorAll("#respawnList li");
+const dungeon = document.querySelectorAll("#dungeonList li");
+const showRespDung = document.querySelector("#showRespDung ul");
+const switchRespDung = document.querySelectorAll("#switchRespDung span");
+switchRespDung.forEach((e) => {
+  e.addEventListener("click", () => {
+    e.classList.add("selected");
+    switchRespDung.forEach((elm) => {
+      if (elm.innerHTML != e.innerHTML) {
+        elm.classList.remove("selected");
+      }
+    });
+    respawnList.classList.toggle("active");
+    dungeonList.classList.toggle("active");
+  });
+});
+if (window.innerWidth >= 730) {
+  respawn.forEach((resp) => {
+    resp.addEventListener("click", () => {
+      showRespDung.innerHTML = "";
+      resp.classList.add("selected");
       respawn.forEach((elm) => {
-        if (elm.innerHTML != e.innerHTML) {
+        if (elm.innerHTML != resp.innerHTML) {
           elm.classList.remove("selected");
         }
       });
-      for (let i = 0; i < selectedRespawn.appears.length; i++) {
-        const search = allPokemon.find(
-          (e) => e.name == selectedRespawn.appears[i]
+      title.innerText = resp.firstChild.innerText;
+      title.href = `respawn.html?name=${title.innerText}`;
+      allPokemon.forEach((pokemon) => {
+        const selectedRespawn = pokemon.routes.find(
+          (r) => r.name.toLowerCase() == title.innerText.toLowerCase()
         );
-        let liResp = document.createElement("li");
-        let aHref = document.createElement("a");
-        let divAppear = document.createElement("div");
-        let spanName = document.createElement("span");
-        let imgAppear = document.createElement("img");
-        let spanLevel = document.createElement("span");
-        selectedRespawnList.appendChild(liResp);
-        liResp.appendChild(aHref);
-        aHref.appendChild(divAppear);
-        divAppear.appendChild(imgAppear);
-        divAppear.appendChild(spanName);
-        aHref.appendChild(spanLevel);
-        spanName.classList.add("name");
-        liResp.style.background = `rgba(var(--${search.types[0]}))`;
-        spanName.innerText = selectedRespawn.appears[i];
-        aHref.href = `pokemon.html?id=${search.numberDex}`;
-        spanLevel.innerText = selectedRespawn.levels[i];
-        imgAppear.src = search.sprite;
-      }
+        if (selectedRespawn) {
+          createNewAppear(pokemon, selectedRespawn);
+        }
+      });
     });
-  }
-});
+  });
+}
+if (window.innerWidth >= 730) {
+  dungeon.forEach((dung) => {
+    console.log(dung);
+    dung.addEventListener("click", () => {
+      showRespDung.innerHTML = "";
+      dung.classList.add("selected");
+      dungeon.forEach((elm) => {
+        if (elm.innerHTML != dung.innerHTML) {
+          elm.classList.remove("selected");
+        }
+      });
+      title.innerText = dung.firstChild.innerText;
+      title.href = `dungeon.html?name=${title.innerText}`;
+      allPokemon.forEach((pokemon) => {
+        if (pokemon.dungeon) {
+          const selectedDungeon = pokemon.dungeon.find(
+            (d) => d.name.toLowerCase() == title.innerText.toLowerCase()
+          );
+          if (selectedDungeon) {
+            createNewAppear(pokemon, selectedDungeon);
+          }
+        }
+      });
+    });
+  });
+}

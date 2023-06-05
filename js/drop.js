@@ -1,4 +1,4 @@
-import { allDrops, allPokemon } from "./database.js";
+import { allDrops, allPokemon } from "./database/database.js";
 
 const URLInfo = new URLSearchParams(window.location.search);
 const selectedDrop = allDrops.find((e) => e.name == URLInfo.get("drop"));

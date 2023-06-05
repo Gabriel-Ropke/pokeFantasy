@@ -1,4 +1,4 @@
-import { allDrops } from "./database.js";
+import { allDrops } from "./database/database.js";
 console.log(allDrops);
 const dropDex = document.getElementById("dropdex");
 
@@ -22,7 +22,7 @@ for (let i = 0; i < allDrops.length; i++) {
   top.appendChild(value);
   dropHref.appendChild(containerImg);
   containerImg.append(pokeImg);
-  dropCard.style.background = `var(--${allDrops[i].Rarity})`;
+  dropCard.style.background = `rgba(var(--${allDrops[i].Rarity}))`;
   dropHref.href = `drop.html?drop=${allDrops[i].name}`;
   name.innerText = allDrops[i].name;
   value.innerText = `$${allDrops[i].Value}`;

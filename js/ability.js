@@ -1,4 +1,4 @@
-import { allAbilities, allPokemon } from "./database.js";
+import { allAbilities, allPokemon } from "./database/database.js";
 console.log(allPokemon);
 
 const URLInfo = new URLSearchParams(window.location.search);

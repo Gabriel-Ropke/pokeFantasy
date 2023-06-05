@@ -1,4 +1,4 @@
-import { allMoves } from "./database.js";
+import { allMoves } from "./database/database.js";
 console.log(allMoves);
 const dropDex = document.getElementById("movedex");
 

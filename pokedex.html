@@ -15,9 +15,12 @@
     <link rel="stylesheet" href="css/responsive/general-responsive.css" />
     <script defer src="js/decoration.js"></script>
     <script defer src="js/pokedex.js" type="module"></script>
-    <script defer src="js/pokedexlistener.js"></script>
-    <link rel="stylesheet" href="css/responsive/dex-responsive.css" />
-    <link rel="stylesheet" href="css/dex/pokedex.css" />
+    <script defer src="js/movedex.js" type="module"></script>
+    <script defer src="js/dropdex.js" type="module"></script>
+    <script defer src="js/abilitydex.js" type="module"></script>
+    <link rel="stylesheet" href="css/dex/abilitydex.css" />
+    <link rel="stylesheet" href="css/dex/alldex.css" />
+    <link rel="stylesheet" href="css/responsive/alldex-responsive.css" />
     <title>Pokedéx</title>
   </head>
   <body>
@@ -25,7 +28,16 @@
     <header>
       <ul></ul>
     </header>
+    <div id="selection">
+      <h2 id="pokemonPage" class="active">Pokémon</h2>
+      <h2 id="movePage">Moves</h2>
+      <h2 id="dropPage">Drops</h2>
+      <h2 id="abilityPage">Abilities</h2>
+    </div>
     <section id="pokedex"></section>
+    <section id="movedex" class="inactive"></section>
+    <section id="dropdex" class="inactive"></section>
+    <section id="abilitydex" class="inactive"><ul></ul></section>
     <footer></footer>
   </body>
 </html>
