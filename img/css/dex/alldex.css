@@ -1,0 +1,200 @@
+/* width */
+::-webkit-scrollbar {
+  width: 15px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+#selection {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, auto));
+  top: 140px;
+  left: 5%;
+  gap: 5px;
+  margin-bottom: 500px;
+  height: 60px;
+  width: 90%;
+  z-index: 10;
+}
+#selection h2 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 5px;
+  transition: 0.25s ease;
+  cursor: pointer;
+  color: var(--black-light-color);
+}
+#selection h2:first-child {
+  border-top-left-radius: 15px;
+}
+#selection h2:last-child {
+  border-top-right-radius: 15px;
+}
+section#pokedex.inactive,
+section#movedex.inactive,
+section#dropdex.inactive,
+section#abilitydex.inactive {
+  display: none;
+}
+#selection h2.active,
+#selection h2:hover {
+  background: var(--border-color-header1);
+  color: white;
+}
+section#pokedex,
+section#movedex,
+section#dropdex {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  gap: 10px;
+  width: 90%;
+  margin: 140px auto 40px;
+  padding: 80px 15px 30px;
+  border-radius: 20px;
+  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.8);
+  background: white;
+}
+section#pokedex .poke-card,
+section#movedex .move-card,
+section#dropdex .drop-card {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 8px 0 8px 8px;
+  transition: 0.5s cubic-bezier(0, 0.69, 0.58, 1);
+  overflow: hidden;
+}
+section#pokedex .poke-card:hover,
+section#movedex .move-card:hover,
+section#dropdex .drop-card:hover {
+  animation: cardHover 0.5s;
+}
+section#pokedex .poke-card a,
+section#movedex .move-card a,
+section#dropdex .drop-card a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+section#pokedex .poke-card a .top,
+section#movedex .move-card a .top,
+section#dropdex .drop-card a .top {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  padding: 0 15px;
+  text-transform: capitalize;
+  font-size: 16px;
+}
+section#pokedex .poke-card a .image,
+section#movedex .move-card a .image,
+section#dropdex .drop-card a .image {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+section#pokedex .poke-card a .image::before,
+section#movedex .move-card a .image::before,
+section#dropdex .drop-card a .image::before {
+  content: "";
+  position: absolute;
+  left: 10%;
+  top: 0;
+  rotate: 45deg;
+  width: 140px;
+  height: 140px;
+  background: url(../../img/general/pokeball.png);
+  background-size: cover;
+}
+section#pokedex .poke-card:hover a .image::before,
+section#movedex .move-card:hover a .image::before,
+section#dropdex .drop-card:hover a .image::before {
+  animation: rotate 5s linear infinite;
+}
+/* Diferenças - Movedex */
+section#movedex .move-card a .top .type {
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: white;
+}
+section#movedex .move-card a .image::before {
+  left: -10px;
+  top: -10px;
+  width: 120px;
+  height: 120px;
+}
+section#movedex .move-card a .image img {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+section#movedex .move-card a .infos {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  bottom: 2px;
+  left: 1%;
+  width: 98%;
+  padding: 8px 20px;
+  background: white;
+  border-radius: 5px;
+  z-index: 1;
+}
+section#movedex .move-card a .infos img {
+  width: 50px;
+  border-radius: 5px;
+}
+/* Diferenças - Pokedex */
+section#pokedex .poke-card a .image img {
+  position: relative;
+  min-height: 70px;
+}
+section#pokedex .poke-card .types {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  bottom: 2px;
+  left: 2px;
+  width: calc(100% - 4px);
+  padding: 8px 0;
+  border-radius: 5px;
+  background: white;
+  z-index: 1;
+}
+section#pokedex .poke-card .types .type {
+  text-transform: capitalize;
+  text-align: center;
+  border-radius: 5px;
+  padding: 2px 0;
+  width: 45%;
+  color: white;
+}
+
+/* Diferenças - Dropdex */
+section#dropdex .drop-card a .image img {
+  position: relative;
+  min-height: 70px;
+  max-height: 100px;
+  max-width: 100px;
+}
