@@ -21,11 +21,12 @@
     align-items: center;
     font-size: 20px;
   }
-  header ul li:nth-child(1) a,
-  header ul li:nth-child(2) a,
-  header ul li:nth-child(3) a,
-  header ul li:nth-child(4) a {
-    border-bottom: none;
+  header ul li#headerindex,
+  header ul li#headerpokedex,
+  header ul li#headerdropdex,
+  header ul li#headermovedex,
+  header ul li#headerabilitydex {
+    border-bottom: 0;
     border-radius: 0;
   }
 

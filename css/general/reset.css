@@ -38,11 +38,11 @@
   --electric: 249, 207, 48;
   --dragon: 112, 55, 255;
   /* Rarity Colors */
-  --legendary: rgb(248, 248, 41);
-  --veryRare: rgb(58, 141, 2);
-  --rare: rgb(69, 207, 35);
-  --uncommon: rgb(2, 100, 192);
-  --common: rgb(95, 152, 206);
+  --legendary: 240, 200, 0;
+  --veryRare: 58, 141, 2;
+  --rare: 69, 207, 35;
+  --uncommon: 2, 100, 192;
+  --common: 95, 152, 206;
 }
 body {
   width: 100%;

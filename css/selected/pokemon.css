@@ -134,7 +134,7 @@ article#moveset.closed ~ section#infos {
   width: calc(100% - 70px);
 }
 article#moveset.closed p {
-  left: calc(50% - 55px);
+  left: 0;
 }
 article#moveset.closed ul {
   opacity: 0;
@@ -143,18 +143,15 @@ article#moveset.closed ul {
 }
 article#moveset p {
   position: absolute;
+  left: 70px;
+  height: 95vh;
+  writing-mode: vertical-lr;
   font-size: 30px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
-  rotate: 90deg;
-  left: calc(50% - 20px);
   text-align: center;
-  height: 95vh;
-  padding: 50px;
   transition: 0.3s ease;
-  color: white;
-  transform: translateY(50%);
 }
 article#moveset ul {
   position: absolute;
@@ -622,6 +619,7 @@ section#infos #drops ul {
   column-gap: 10px;
   overflow-x: auto;
 }
+
 section#infos #drops ul li {
   width: 70px;
   height: 70px;
@@ -672,14 +670,60 @@ section#infos #drops ul li a:hover span {
 section#infos #respawn {
   display: flex;
   position: relative;
+  gap: 5px;
   padding-top: 40px;
 }
-section#infos #respawn ul {
+section#infos #respawn #respDung {
+  display: flex;
+  flex-flow: column;
   width: 40%;
+}
+section#infos #respawn #respDung ul span.alert {
+  display: block;
+  width: 100%;
+  margin-top: 50%;
+  transform: translateY(-50%);
+  color: gray;
+  text-align: center;
+  font-size: 16px;
+}
+section#infos #respawn #respDung #switchRespDung {
+  display: flex;
+  height: 40px;
+}
+section#infos #respawn #respDung #switchRespDung span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  background: rgba(var(--principal-color), 0.7);
+  font-size: 20px;
+  text-transform: capitalize;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+section#infos #respawn #respDung #switchRespDung span.selected,
+section#infos #respawn #respDung #switchRespDung span:hover {
+  background: rgba(var(--principal-color));
+}
+section#infos #respawn #respDung #switchRespDung span img {
+  width: 25px;
+  height: 25px;
+}
+section#infos #respawn ul {
+  width: 0;
+  height: 0;
   max-height: 400px;
-  padding-bottom: 10px;
-  border-right: 1px solid black;
+  border-right: 1px solid rgba(var(--principal-color));
   overflow-y: auto;
+  visibility: hidden;
+}
+section#infos #respawn ul.active {
+  width: 100%;
+  height: auto;
+  visibility: visible;
 }
 section#infos #respawn ul .route {
   display: flex;
@@ -712,36 +756,42 @@ section#infos #respawn ul .route:hover span,
 section#infos #respawn ul .route.selected span {
   color: white;
 }
-section#infos #respawn article {
-  padding-top: 40px;
+section#infos #respawn article#showRespDung {
   position: relative;
   display: flex;
   justify-content: flex-end;
   row-gap: 20px;
+  width: 50%;
+  padding-top: 40px;
   width: 60%;
   height: 400px;
 }
-section#infos #respawn article ul {
+section#infos #respawn article#showRespDung .title {
+  border-radius: 5px 0 0 5px;
+}
+section#infos #respawn article#showRespDung ul {
   display: flex;
   flex-flow: column;
   width: 98%;
+  height: auto;
+  padding: 0;
   border: none;
   border-radius: 15px 0 0 15px;
-  padding: 0;
   margin-bottom: 10px;
+  visibility: visible;
 }
-section#infos #respawn article ul li {
+section#infos #respawn article#showRespDung ul li {
   display: flex;
   flex-flow: row;
   transition: 0.3s ease;
 }
-section#infos #respawn article ul li:nth-child(1n) {
+section#infos #respawn article#showRespDung ul li:nth-child(1n) {
   border-color: white;
   cursor: context-menu;
   background: rgba(var(--principal-color));
 }
-section#infos #respawn article ul li div,
-section#infos #respawn article ul li span {
+section#infos #respawn article#showRespDung ul li div,
+section#infos #respawn article#showRespDung ul li span {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -749,14 +799,14 @@ section#infos #respawn article ul li span {
   font-size: 20px;
   width: 50%;
 }
-section#infos #respawn article ul li span.name {
+section#infos #respawn article#showRespDung ul li span.name {
   justify-content: flex-start;
 }
-section#infos #respawn article ul li a {
+section#infos #respawn article#showRespDung ul li a {
   display: flex;
   width: 100%;
 }
-section#infos #respawn article ul li img {
+section#infos #respawn article#showRespDung ul li img {
   width: 70px;
   height: 70px;
 }

@@ -1,7 +1,7 @@
 section#abilitydex {
   width: 90%;
   margin: 140px auto 40px;
-  padding: 20px 15px 30px;
+  padding: 80px 15px 30px;
   border-radius: 15px;
   box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.5);
   background: white;
@@ -35,14 +35,4 @@ section#abilitydex ul li a p.description {
   text-overflow: ellipsis;
   width: 100%;
   font-weight: 500;
-}
-@media (max-width: 500px) {
-  section#abilitydex ul li a span {
-    width: 100%;
-    margin: 0;
-    text-align: center;
-  }
-  section#abilitydex ul li a p {
-    display: none;
-  }
 }
