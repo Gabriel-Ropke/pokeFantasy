@@ -1,4 +1,4 @@
-import { allMoves, allPokemon } from "./database.js";
+import { allMoves, allPokemon } from "./database/database.js";
 
 const URLInfo = new URLSearchParams(window.location.search);
 const selectedMove = allMoves.find((e) => e.name == URLInfo.get("move"));
@@ -32,19 +32,20 @@ const dropListTitle = document.querySelector("#moveListTitle span");
 dropListTitle.innerText = selectedMove.name;
 const dropList = document.getElementById("moveList");
 allPokemon.forEach((e) => {
-  const correctPokemon = e.moves.find((sear) => sear == selectedMove.name);
+  const correctPokemon = e.moves.find((sear) => sear.name == selectedMove.name);
+  console.log(correctPokemon);
   if (correctPokemon) {
-    let newPokemon = document.createElement("li");
-    let newHref = document.createElement("a");
-    let newImg = document.createElement("img");
-    let newName = document.createElement("span");
-    dropList.appendChild(newPokemon);
-    newPokemon.appendChild(newHref);
-    newHref.appendChild(newImg);
-    newHref.appendChild(newName);
-    newPokemon.style.background = `var(--${e.types[0]})`;
-    newHref.href = `pokemon.html?id=${e.numberDex}`;
-    newImg.src = e.sprite;
-    newName.innerText = e.name;
+    let liPokemon = document.createElement("li");
+    let aHref = document.createElement("a");
+    let imgPokemon = document.createElement("img");
+    let spanName = document.createElement("span");
+    dropList.appendChild(liPokemon);
+    liPokemon.appendChild(aHref);
+    aHref.appendChild(imgPokemon);
+    aHref.appendChild(spanName);
+    liPokemon.style.background = `rgba(var(--${e.types[0]}))`;
+    aHref.href = `pokemon.html?id=${e.numberDex}`;
+    imgPokemon.src = e.sprite;
+    spanName.innerText = e.name;
   }
 });

@@ -1,4 +1,4 @@
-import { allAbilities } from "./database.js";
+import { allAbilities } from "./database/database.js";
 
 const ul = document.querySelector("#abilitydex ul");
 allAbilities.forEach((e) => {
@@ -10,7 +10,9 @@ allAbilities.forEach((e) => {
   li.appendChild(a);
   a.append(spanName);
   a.appendChild(pDesc);
-  li.style.background = `var(--${e.type})`;
+  spanName.classList.add("name");
+  pDesc.classList.add("description");
+  li.style.background = `rgba(var(--${e.type}))`;
   a.href = `ability.html?ability=${e.name}`;
   spanName.innerText = e.name;
   pDesc.innerText = e.description;

@@ -4,31 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/pokemon.css" />
-    <script defer src="js/database.js"></script>
+    <link rel="stylesheet" href="css/general/reset.css" />
+    <link rel="stylesheet" href="css/general/header.css" />
+    <link rel="stylesheet" href="css/selected/pokemon.css" />
+    <script defer src="js/decoration.js"></script>
     <script defer src="js/pokemon.js" type="module"></script>
     <script defer src="js/pokemonlistener.js"></script>
-    <link rel="stylesheet" href="css/pokemonResponsive.css" />
+    <link rel="stylesheet" href="css/responsive/pokemonResponsive.css" />
     <title>Pokémon</title>
   </head>
   <body>
-    <nav>
-      <input type="search" name="search" id="" />
-      <a href="index.html">Voltar</a>
-    </nav>
+    <header class="pokemon-header"><ul></ul></header>
     <article id="move" class="closed">
       <b>x</b>
       <div id="moveInfo">
-        <span id="moveName"></span>
+        <span id="moveLevel"></span>
+        <span id="moveName"> </span>
         <ul></ul>
-        <div id="catType"></div>
+        <div id="catType">
+          <img src="" alt="" />
+          <span></span>
+        </div>
         <p id="description"></p>
         <p id="effects"></p>
       </div>
     </article>
     <article id="moveset">
-      <p>moveset</p>
+      <p>Moveset</p>
       <ul></ul>
     </article>
     <section id="infos">
@@ -79,9 +81,18 @@
       </div>
       <div id="respawn">
         <h2>Respawns</h2>
-        <ul class="respawn-list"></ul>
-        <article>
-          <h2 class="title"></h2>
+        <article id="respDung">
+          <div id="switchRespDung">
+            <span class="selected">
+              <img src="img/drops/Helix_Fossil.png" alt="" />Respawn</span
+            >
+            <span><img src="img/drops/Helix_Fossil.png" alt="" />Dungeon</span>
+          </div>
+          <ul id="respawnList" class="active"></ul>
+          <ul id="dungeonList"></ul>
+        </article>
+        <article id="showRespDung">
+          <h2 class="title"><a href="#"></a></h2>
           <ul></ul>
         </article>
       </div>

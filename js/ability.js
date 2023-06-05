@@ -1,4 +1,4 @@
-import { allAbilities, allPokemon } from "./database.js";
+import { allAbilities, allPokemon } from "./database/database.js";
 console.log(allPokemon);
 
 const URLInfo = new URLSearchParams(window.location.search);
@@ -7,7 +7,7 @@ const selectedAbility = allAbilities.find(
 );
 document.body.style.setProperty(
   "--principal-color",
-  `var(--${selectedAbility.type})`
+  `rgba(var(--${selectedAbility.type}))`
 );
 console.log(selectedAbility);
 const abilityName = document.querySelector("#abilityName");
@@ -32,7 +32,7 @@ allPokemon.forEach((e) => {
     newPokemon.appendChild(newHref);
     newHref.appendChild(newImg);
     newHref.appendChild(newName);
-    newPokemon.style.background = `var(--${e.types[0]})`;
+    newPokemon.style.background = `rgba(var(--${e.types[0]}))`;
     newHref.href = `pokemon.html?id=${e.numberDex}`;
     newImg.src = e.sprite;
     newName.innerText = e.name;

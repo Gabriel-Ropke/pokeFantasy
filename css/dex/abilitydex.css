@@ -1,0 +1,38 @@
+section#abilitydex {
+  width: 90%;
+  margin: 140px auto 40px;
+  padding: 80px 15px 30px;
+  border-radius: 15px;
+  box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.5);
+  background: white;
+}
+section#abilitydex ul {
+  display: flex;
+  flex-flow: column;
+  gap: 5px;
+}
+section#abilitydex ul li {
+  width: 100%;
+  height: 60px;
+  padding: 0 15px;
+  border-radius: 10px 0 10px 10px;
+}
+section#abilitydex ul li a {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+section#abilitydex ul li a span.name {
+  width: 300px;
+  margin-right: 20px;
+  font-size: 20px;
+}
+section#abilitydex ul li a p.description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  font-weight: 500;
+}

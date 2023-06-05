@@ -1,4 +1,4 @@
-import { allMoves } from "./database.js";
+import { allMoves } from "./database/database.js";
 console.log(allMoves);
 const dropDex = document.getElementById("movedex");
 
@@ -29,11 +29,11 @@ for (let i = 0; i < allMoves.length; i++) {
   moveHref.appendChild(infos);
   infos.appendChild(category);
   infos.appendChild(power);
-  type.style.color = `var(--${allMoves[i].type})`;
+  type.style.color = `rgba(var(--${allMoves[i].type}))`;
   power.innerText = `power: ${allMoves[i].attributes[0]}`;
-  power.style.color = `var(--${allMoves[i].type})`;
+  power.style.color = `rgba(var(--${allMoves[i].type}))`;
   category.src = allMoves[i].categorySource;
-  moveCard.style.background = `var(--${allMoves[i].type})`;
+  moveCard.style.background = `rgba(var(--${allMoves[i].type}))`;
   moveHref.href = `move.html?move=${allMoves[i].name}`;
   name.innerText = allMoves[i].name;
   type.innerText = `${allMoves[i].type}`;

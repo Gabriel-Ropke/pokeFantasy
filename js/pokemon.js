@@ -1,73 +1,86 @@
 import {
   allDrops,
+  allDungeon,
   allMoveInfo,
   allMoves,
   allPokemon,
   allResps,
   allStats,
   allWeakness,
-} from "./database.js";
-let ez = 0;
+} from "./database/database.js";
 const URLInfo = new URLSearchParams(window.location.search);
 const selectedPokemon = allPokemon.find(
   (e) => Math.floor(e.numberDex) == URLInfo.get("id")
 );
-const type = selectedPokemon.types[0];
+console.log(selectedPokemon);
+document.body.style.setProperty(
+  "--principal-color",
+  `var(--${selectedPokemon.types[0]})`
+);
+/* Moveset Appendchild */
 const moveset = document.querySelector("#moveset ul");
 selectedPokemon.moves.forEach((e) => {
-  let searchMove = allMoves.find((sear) => sear.name == e);
-  let newMove = document.createElement("li");
-  let newMoveName = document.createElement("span");
-  let newMoveImg = document.createElement("img");
-  moveset.appendChild(newMove);
-  newMove.appendChild(newMoveImg);
-  newMove.appendChild(newMoveName);
-  newMoveImg.style.borderColor = `var(--${searchMove.type})`;
-  newMoveName.style.background = `var(--${searchMove.type})`;
-  newMoveName.innerText = searchMove.name;
-  newMoveImg.src = searchMove.moveSource;
+  const search = allMoves.find((sear) => sear.name == e.name);
+  let liMove = document.createElement("li");
+  let divCover = document.createElement("div");
+  let spanName = document.createElement("span");
+  let imgMove = document.createElement("img");
+  moveset.appendChild(liMove);
+  liMove.appendChild(imgMove);
+  liMove.appendChild(spanName);
+  liMove.appendChild(divCover);
+  divCover.classList.add("cover");
+  liMove.classList.add("move");
+  spanName.classList.add("name");
+  imgMove.style.borderColor = `rgba(var(--${search.type}))`;
+  spanName.style.background = `rgba(var(--${search.type}))`;
+  divCover.innerText = `Nvl. ${e.level}`;
+  spanName.innerText = search.name;
+  imgMove.src = search.moveSource;
 });
+/* moves Selector */
 const moves = document.querySelectorAll("#moveset ul li");
 const moveInfo = document.getElementById("moveInfo");
-const moveInfoName = document.getElementById("moveName");
-const moveInfoList = document.querySelector("#moveInfo ul");
-const moveInfoCatType = document.getElementById("catType");
-const moveInfoDescription = document.getElementById("description");
-const moveInfoEffects = document.getElementById("effects");
+const moveName = document.getElementById("moveName");
+const moveLevel = document.getElementById("moveLevel");
+const moveAttributes = document.querySelector("#moveInfo ul");
+const moveCategory = document.querySelector("#catType img");
+const moveType = document.querySelector("#catType span");
+const moveDescription = document.getElementById("description");
+const moveEffects = document.getElementById("effects");
+/* moves Appendchild */
 moves.forEach((e) => {
   e.addEventListener("click", () => {
-    const searchMoveInfo = allMoves.find(
-      (elm) => elm.name == e.lastChild.innerHTML
+    const search = allMoves.find((elm) => elm.name == e.children[1].innerHTML);
+    const pokemon = selectedPokemon.moves.find(
+      (level) => level.name == e.children[1].innerHTML
     );
-    console.log(searchMoveInfo);
-    moveInfoList.innerHTML = "";
-    moveInfoCatType.innerHTML = "";
-    let newCategory = document.createElement("img");
-    let newType = document.createElement("span");
-    newCategory.src = searchMoveInfo.categorySource;
-    newType.innerText = searchMoveInfo.type;
-    moveInfoName.innerText = searchMoveInfo.name;
-    moveInfoDescription.innerText = searchMoveInfo.description;
-    moveInfoEffects.innerText = searchMoveInfo.effects;
-    newType.style.background = `var(--${searchMoveInfo.type})`;
-    moveInfoName.style.color = `var(--${searchMoveInfo.type})`;
-    moveInfo.style.borderColor = `var(--${searchMoveInfo.type})`;
-    moveInfoCatType.appendChild(newCategory);
-    moveInfoCatType.appendChild(newType);
+    moveAttributes.innerHTML = "";
+    moveCategory.src = search.categorySource;
+    moveType.innerText = search.type;
+    moveName.innerText = search.name;
+    moveLevel.innerText = `Nvl. ${pokemon.level}`;
+    moveDescription.innerText = search.description;
+    moveEffects.innerText = search.effects;
+    moveEffects.style.color = `rgba(var(--${search.type}))`;
+    moveType.style.background = `rgba(var(--${search.type}))`;
+    moveName.style.color = `rgba(var(--${search.type}))`;
+    moveLevel.style.background = `rgba(var(--${search.type}))`;
+    moveInfo.style.border = `4px solid rgba(var(--${search.type}))`;
     for (let i = 0; i < allMoveInfo.length; i++) {
-      let newMoveItem = document.createElement("li");
-      let newMoveAttribute = document.createElement("span");
-      let newMoveAttributeNumber = document.createElement("span");
-      moveInfoList.appendChild(newMoveItem);
-      newMoveItem.appendChild(newMoveAttribute);
-      newMoveItem.appendChild(newMoveAttributeNumber);
-      newMoveAttribute.innerText = allMoveInfo[i];
-      newMoveAttributeNumber.innerText = searchMoveInfo.attributes[i];
-      newMoveAttributeNumber.style.color = `var(--${searchMoveInfo.type})`;
+      let liAttribute = document.createElement("li");
+      let spanName = document.createElement("span");
+      let spanNumber = document.createElement("span");
+      moveAttributes.appendChild(liAttribute);
+      liAttribute.appendChild(spanName);
+      liAttribute.appendChild(spanNumber);
+      spanName.innerText = allMoveInfo[i];
+      spanNumber.innerText = search.attributes[i];
+      spanNumber.style.color = `rgba(var(--${search.type}))`;
     }
   });
 });
-document.body.style.setProperty("--principal-color", `var(--${type})`);
+/* Top */
 const principalTitle = document.querySelector("#top h1");
 const previewPokemon = document.querySelector("#preview a");
 const nextPokemon = document.querySelector("#next a");
@@ -77,6 +90,7 @@ const preview = allPokemon.find(
 const next = allPokemon.find(
   (e) => e.numberDex == Math.floor(selectedPokemon.numberDex) + 1
 );
+/*
 if (Math.floor(selectedPokemon.numberDex) == 1) {
   nextPokemon.innerText = `${next.name} #${next.numberDex} `;
   nextPokemon.href = `pokemon.html?id=${next.numberDex}`;
@@ -89,24 +103,21 @@ if (Math.floor(selectedPokemon.numberDex) == 1) {
   previewPokemon.href = `pokemon.html?id=${preview.numberDex}`;
   nextPokemon.href = `pokemon.html?id=${next.numberDex}`;
 }
+*/
 principalTitle.innerText = selectedPokemon.name;
+
 /* General Info */
 const firstImg = document.querySelector("#pseudo-list img");
 const species = document.querySelector(".species");
+firstImg.src = selectedPokemon.sprite;
+species.innerText = selectedPokemon.species;
 const types = document.querySelector(".types");
 const abilities = document.querySelector(".abilities");
-const catchRate = document.querySelector(".catch-rate");
-const pokeWidth = document.querySelector(".width");
-const pokeHeight = document.querySelector(".height");
 const evYield = document.querySelector(".ev-yield");
-const weakness = document.querySelector("#weakness ul");
-firstImg.src = selectedPokemon.sprite;
-firstImg.style.background = `var(--${type})`;
-species.innerText = selectedPokemon.species;
 selectedPokemon.types.forEach((e) => {
   let newType = document.createElement("p");
   newType.innerText = e;
-  newType.style.background = `var(--${e})`;
+  newType.style.background = `rgba(var(--${e}))`;
   types.appendChild(newType);
 });
 selectedPokemon.abilities.forEach((e) => {
@@ -121,19 +132,26 @@ selectedPokemon.evYield.forEach((e) => {
   evYield.appendChild(newEV);
   newEV.innerText = e;
 });
-
+const catchRate = document.querySelector(".catch-rate");
+const pokeWidth = document.querySelector(".width");
+const pokeHeight = document.querySelector(".height");
 catchRate.innerText = selectedPokemon.catchRate;
 pokeWidth.innerText = selectedPokemon.width;
 pokeHeight.innerText = selectedPokemon.height;
-allWeakness.forEach((e) => {
-  let newWeak = document.createElement("li");
-  let newWeakTitle = document.createElement("span");
-  let newWeakness = document.createElement("span");
-  weakness.appendChild(newWeak);
-  newWeak.appendChild(newWeakTitle);
-  newWeak.appendChild(newWeakness);
-  newWeak.style.background = `var(--${e.name})`;
-  newWeakTitle.innerText = e.name;
+/* Weakness */
+const weakness = document.querySelector("#weakness ul");
+for (let i = 0; i < allWeakness.length; i++) {
+  let liWeak = document.createElement("li");
+  let spanName = document.createElement("span");
+  let spanWeakness = document.createElement("span");
+  weakness.appendChild(liWeak);
+  liWeak.appendChild(spanName);
+  liWeak.appendChild(spanWeakness);
+  liWeak.classList.add("weak");
+  spanName.classList.add("name");
+  spanWeakness.classList.add("weakness");
+  liWeak.style.background = `rgba(var(--${allWeakness[i].name}))`;
+  spanName.innerText = allWeakness[i].name;
   const weak = allWeakness.find(
     (sear) => sear.name == selectedPokemon.types[0]
   );
@@ -141,70 +159,62 @@ allWeakness.forEach((e) => {
     const weak2 = allWeakness.find(
       (sear) => sear.name == selectedPokemon.types[1]
     );
-    let newType = weak.Weakness[ez] * weak2.Weakness[ez];
-    newWeakness.innerText = `${newType}x`;
+    let newType = weak.Weakness[i] * weak2.Weakness[i];
+    spanWeakness.innerText = `${newType}x`;
   } else {
-    newWeakness.innerText = `${weak.Weakness[ez]}x`;
+    spanWeakness.innerText = `${weak.Weakness[i]}x`;
   }
-  ez++;
-});
-ez = 0;
+}
 
 /* Alternative Forms & Evolutionary */
 const normalForm = document.querySelector("#alternative .normal");
 const shinyForm = document.querySelector("#alternative .shiny");
 
-normalForm.src = selectedPokemon.sprite;
-shinyForm.src = selectedPokemon.shinySprite;
-normalForm.style.background = `var(--${type})`;
-shinyForm.style.background = `var(--${type})`;
+normalForm.src = selectedPokemon.animated;
+shinyForm.src = selectedPokemon.shinyAnimated;
 
 const evolutionary = document.getElementById("evolutionary");
 selectedPokemon.evolutionary.forEach((e) => {
-  const evolution = allPokemon.find((sear) => sear.name == e);
+  console.log(e);
+  const evolution = allPokemon.find(
+    (sear) => sear.name.toLowerCase() == e.toLowerCase()
+  );
   console.log(evolution);
-  let newEvoHref = document.createElement("a");
-  let newEvoLevel = document.createElement("span");
-  let newEvo = document.createElement("img");
-  newEvoHref.appendChild(newEvo);
-  newEvoHref.appendChild(newEvoLevel);
-  newEvoHref.href = `pokemon.html?id=${evolution.numberDex}`;
-  newEvo.src = evolution.sprite;
-  newEvo.id = evolution.numberDex;
-  newEvoLevel.innerText = evolution.evoMode;
-  newEvo.style.background = `var(--${type})`;
-  evolutionary.appendChild(newEvoHref);
+  let aHref = document.createElement("a");
+  let spanLevel = document.createElement("span");
+  let imgEvolution = document.createElement("img");
+  evolutionary.appendChild(aHref);
+  aHref.appendChild(imgEvolution);
+  aHref.appendChild(spanLevel);
+  aHref.href = `pokemon.html?id=${evolution.numberDex}`;
+  imgEvolution.src = evolution.animated;
+  spanLevel.innerText = evolution.evoMode;
 });
 
 /* Stats */
 const stats = document.querySelector("#stats ul");
 
-selectedPokemon.stats.forEach((e) => {
-  let newStat = document.createElement("li");
-  let newStatName = document.createElement("span");
-  let newStatNumber = document.createElement("span");
-  let newBarOut = document.createElement("div");
-  let newBarIn = document.createElement("div");
-  stats.appendChild(newStat);
-  newStat.appendChild(newStatName);
-  newStat.appendChild(newStatNumber);
-  newStat.appendChild(newBarOut);
-  newBarOut.appendChild(newBarIn);
-  newStatName.classList.add("stats-name");
-  newBarOut.classList.add("bar-out");
-  newBarIn.classList.add("bar-in");
-  newStatName.innerText = allStats[ez];
-  newStatNumber.innerText = e;
-  newStatNumber.style.color = `var(--${type})`;
-  newBarIn.style.width = `${e / 1.5}%`;
-  newBarIn.style.background = `var(--${type})`;
-  ez++;
-});
-ez = 0;
+for (let i = 0; i < selectedPokemon.stats.length; i++) {
+  let liStat = document.createElement("li");
+  let spanName = document.createElement("span");
+  let spanNumber = document.createElement("span");
+  let barOut = document.createElement("div");
+  let barIn = document.createElement("div");
+  stats.appendChild(liStat);
+  liStat.appendChild(spanName);
+  liStat.appendChild(spanNumber);
+  liStat.appendChild(barOut);
+  barOut.appendChild(barIn);
+  spanName.classList.add("name");
+  barOut.classList.add("bar-out");
+  barIn.classList.add("bar-in");
+  spanName.innerText = allStats[i];
+  spanNumber.innerText = selectedPokemon.stats[i];
+  barIn.style.width = `${selectedPokemon.stats[i] / 1.5}%`;
+}
 
 /* Drops */
 const dropList = document.querySelector("#drops ul");
-
 selectedPokemon.drops.forEach((e) => {
   const searchDrops = allDrops.find((sear) => sear.name == e);
   let newDrop = document.createElement("li");
@@ -215,72 +225,125 @@ selectedPokemon.drops.forEach((e) => {
   newDrop.appendChild(newDropHref);
   newDropHref.appendChild(newDropImg);
   newDropHref.appendChild(newDropName);
-  newDrop.style.background = `var(--${searchDrops.Rarity})`;
-  newDropName.innerText = `${searchDrops.name} $${searchDrops.Value}`;
-  newDropName.style.background = `var(--${type})`;
+  newDrop.style.background = `rgba(var(--${searchDrops.Rarity}))`;
+  newDropName.innerText = searchDrops.name;
   newDropHref.href = `drop.html?drop=${searchDrops.name}`;
   newDropImg.src = searchDrops.sprite;
 });
 /* Resps */
-const resps = document.querySelector(".respawn-list");
-selectedPokemon.routes.forEach((e) => {
+const respawnList = document.getElementById("respawnList");
+const dungeonList = document.getElementById("dungeonList");
+function createNewRespLi(pokemon, list) {
   let newResp = document.createElement("li");
   let newRespName = document.createElement("span");
   let newRespLevel = document.createElement("span");
-  resps.appendChild(newResp);
+  list.appendChild(newResp);
   newResp.appendChild(newRespName);
   newResp.appendChild(newRespLevel);
   newResp.classList.add("route");
   newRespName.classList.add("name");
-  newRespName.innerText = e.name;
-  newRespLevel.innerText = `Nvl ${e.level}`;
+  newRespName.innerText = pokemon.name;
+  newRespLevel.innerText = `Nvl ${pokemon.minlevel} ~ ${pokemon.maxlevel}`;
+}
+selectedPokemon.routes.forEach((resp) => {
+  createNewRespLi(resp, respawnList);
 });
+if (selectedPokemon.dungeon) {
+  selectedPokemon.dungeon.forEach((dung) => {
+    createNewRespLi(dung, dungeonList);
+  });
+} else {
+  let alert = document.createElement("span");
+  alert.innerText = "Este Pokémon não tem Dungeons.";
+  alert.classList.add("alert");
+  dungeonList.appendChild(alert);
+  dungeonList.style.borderRight = "0px";
+}
+
 /* Selected Resp Info */
-const respawnTitle = document.querySelector("#respawn article .title");
-const respawn = document.querySelectorAll(".respawn-list li");
-const selectedRespawnList = document.querySelector("#respawn article ul");
-respawn.forEach((e) => {
-  if (window.innerWidth >= 730) {
-    e.addEventListener("click", () => {
-      selectedRespawnList.innerHTML = "";
-      respawnTitle.innerText = e.firstChild.innerText;
-      const selectedRespawn = allResps.find(
-        (e) => e.name == respawnTitle.innerText
-      );
-      e.classList.add("selected");
+function createNewAppear(poke, selected) {
+  let liResp = document.createElement("li");
+  let aHref = document.createElement("a");
+  let divAppear = document.createElement("div");
+  let spanName = document.createElement("span");
+  let imgAppear = document.createElement("img");
+  let spanLevel = document.createElement("span");
+  showRespDung.appendChild(liResp);
+  liResp.appendChild(aHref);
+  aHref.appendChild(divAppear);
+  divAppear.appendChild(imgAppear);
+  divAppear.appendChild(spanName);
+  aHref.appendChild(spanLevel);
+  spanName.classList.add("name");
+  liResp.style.background = `rgba(var(--${poke.types[0]}))`;
+  spanName.innerText = poke.name;
+  aHref.href = `pokemon.html?id=${poke.numberDex}`;
+  spanLevel.innerText = `Nvl. ${selected.minlevel} ~  ${selected.maxlevel}`;
+  imgAppear.src = poke.sprite;
+}
+const title = document.querySelector("#respawn article .title a");
+const respawn = document.querySelectorAll("#respawnList li");
+const dungeon = document.querySelectorAll("#dungeonList li");
+const showRespDung = document.querySelector("#showRespDung ul");
+const switchRespDung = document.querySelectorAll("#switchRespDung span");
+switchRespDung.forEach((e) => {
+  e.addEventListener("click", () => {
+    e.classList.add("selected");
+    switchRespDung.forEach((elm) => {
+      if (elm.innerHTML != e.innerHTML) {
+        elm.classList.remove("selected");
+      }
+    });
+    respawnList.classList.toggle("active");
+    dungeonList.classList.toggle("active");
+  });
+});
+if (window.innerWidth >= 730) {
+  respawn.forEach((resp) => {
+    resp.addEventListener("click", () => {
+      showRespDung.innerHTML = "";
+      resp.classList.add("selected");
       respawn.forEach((elm) => {
-        if (elm.innerHTML != e.innerHTML) {
+        if (elm.innerHTML != resp.innerHTML) {
           elm.classList.remove("selected");
         }
       });
-      for (let i = 0; i < selectedRespawn.appears.length; i++) {
-        let newResp = document.createElement("li");
-        let newRespHref = document.createElement("a");
-        let newRespAppear = document.createElement("div");
-        let newAppearName = document.createElement("span");
-        let newAppearSprite = document.createElement("img");
-        let newAppearLevel = document.createElement("span");
-        selectedRespawnList.appendChild(newResp);
-        newResp.appendChild(newRespHref);
-        newRespHref.appendChild(newRespAppear);
-        newRespAppear.appendChild(newAppearSprite);
-        newRespAppear.appendChild(newAppearName);
-        newRespHref.appendChild(newAppearLevel);
-        newAppearName.innerHTML = selectedRespawn.appears[i];
-        newRespHref.href = "pokemon.html";
-        newAppearLevel.innerText = selectedRespawn.levels[i];
-        const selectedRespawnSprite = allPokemon.find(
-          (e) => e.name == selectedRespawn.appears[i]
+      title.innerText = resp.firstChild.innerText;
+      title.href = `respawn.html?name=${title.innerText}`;
+      allPokemon.forEach((pokemon) => {
+        const selectedRespawn = pokemon.routes.find(
+          (r) => r.name.toLowerCase() == title.innerText.toLowerCase()
         );
-        newAppearSprite.src = selectedRespawnSprite.sprite;
-        newAppearName.addEventListener("click", (e) => {
-          const resp = allPokemon.find(
-            (sear) => sear.name == newAppearName.innerText
-          );
-          console.log(resp);
-          localStorage.setItem("selectedPokemon", resp.numberDex);
-        });
-      }
+        if (selectedRespawn) {
+          createNewAppear(pokemon, selectedRespawn);
+        }
+      });
     });
-  }
-});
+  });
+}
+if (window.innerWidth >= 730) {
+  dungeon.forEach((dung) => {
+    console.log(dung);
+    dung.addEventListener("click", () => {
+      showRespDung.innerHTML = "";
+      dung.classList.add("selected");
+      dungeon.forEach((elm) => {
+        if (elm.innerHTML != dung.innerHTML) {
+          elm.classList.remove("selected");
+        }
+      });
+      title.innerText = dung.firstChild.innerText;
+      title.href = `dungeon.html?name=${title.innerText}`;
+      allPokemon.forEach((pokemon) => {
+        if (pokemon.dungeon) {
+          const selectedDungeon = pokemon.dungeon.find(
+            (d) => d.name.toLowerCase() == title.innerText.toLowerCase()
+          );
+          if (selectedDungeon) {
+            createNewAppear(pokemon, selectedDungeon);
+          }
+        }
+      });
+    });
+  });
+}
